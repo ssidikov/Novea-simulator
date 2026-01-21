@@ -1,5 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { useFormData, type Situation } from '@/contexts/FormContext'
+import { getNextRoute } from '@/utils/navigationFlow'
 import {
   BriefcaseIcon,
   UsersIcon,
@@ -47,9 +49,12 @@ function OptionCard({ icon, title, description, onClick, highlighted = false }: 
 
 export default function SimulateurStart() {
   const router = useRouter()
+  const { formData, updateFormData } = useFormData()
 
-  const handleDirigeantClick = () => {
-    router.push('/dirigeant')
+  const handleSituationSelect = (situation: Situation) => {
+    updateFormData({ situation })
+    const nextRoute = getNextRoute('/', { ...formData, situation })
+    router.push(nextRoute)
   }
 
   return (
@@ -90,7 +95,7 @@ export default function SimulateurStart() {
                 icon={<BriefcaseIcon className='text-white/60' />}
                 title='Fondateur, Dirigeant'
                 description="Contrats spécifiques pour chefs d'entreprise"
-                onClick={handleDirigeantClick}
+                onClick={() => handleSituationSelect('dirigeant')}
               />
 
               {/* Indépendant, travailleur non salarié */}
@@ -98,7 +103,7 @@ export default function SimulateurStart() {
                 icon={<UsersIcon className='text-white/60' />}
                 title='Indépendant, travailleur non salarié'
                 description='Protection adaptée aux TNS'
-                onClick={() => router.push('/tns')}
+                onClick={() => handleSituationSelect('indtpt')}
                 highlighted={true}
               />
 
@@ -107,7 +112,7 @@ export default function SimulateurStart() {
                 icon={<BuildingIcon className='text-white/60' />}
                 title='RH, comptable, expert comptable, etc'
                 description='Solutions pour professionnels'
-                onClick={() => router.push('/professionnel')}
+                onClick={() => handleSituationSelect('rh')}
               />
 
               {/* Retraité */}
@@ -115,7 +120,7 @@ export default function SimulateurStart() {
                 icon={<HeartIcon className='text-white/60' />}
                 title='Retraité'
                 description='Couverture santé senior'
-                onClick={() => router.push('/retraite')}
+                onClick={() => handleSituationSelect('retraite')}
               />
 
               {/* Particulier, Étudiants, etc */}
@@ -123,7 +128,7 @@ export default function SimulateurStart() {
                 icon={<PersonIcon className='text-white/60' />}
                 title='Particulier, Étudiants, etc'
                 description='Formules individuelles flexibles'
-                onClick={() => router.push('/particulier')}
+                onClick={() => handleSituationSelect('parti')}
               />
 
               {/* Salarié d'une entreprise */}
@@ -131,7 +136,7 @@ export default function SimulateurStart() {
                 icon={<UserGroupIcon className='text-white/60' />}
                 title="Salarié d'une entreprise qui a rejoint la mutuelle Novéa"
                 description='Contrats collectifs entreprise'
-                onClick={() => router.push('/salarie')}
+                onClick={() => handleSituationSelect('salarie-entr')}
               />
             </div>
           </div>

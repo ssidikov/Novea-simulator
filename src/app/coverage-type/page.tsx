@@ -1,5 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useFormData, type CoverageType } from '@/contexts/FormContext';
+import { getNextRoute } from '@/utils/navigationFlow';
 import { ArrowLeftIcon, UsersIcon, UserSingleIcon, UserGroupIcon } from '@/components/Icons';
 
 interface TagProps {
@@ -56,6 +58,13 @@ function CoverageCard({ icon, title, description, onClick }: CoverageCardProps) 
 
 export default function CoverageTypePage() {
   const router = useRouter();
+  const { formData, updateFormData } = useFormData();
+
+  const handleCoverageSelect = (coverageType: CoverageType) => {
+    updateFormData({ coverageType });
+    const nextRoute = getNextRoute('/coverage-type', { ...formData, coverageType });
+    router.push(nextRoute);
+  };
 
   const handleBack = () => {
     router.back();
@@ -104,7 +113,7 @@ export default function CoverageTypePage() {
               icon={<UsersIcon className="text-white/60" />}
               title="Salariés"
               description="Couverture santé collective pour vos collaborateurs"
-              onClick={() => router.push('/beneficiaries')}
+              onClick={() => handleCoverageSelect('salarie-seulement')}
             />
 
             {/* Dirigeant seulement */}
@@ -112,7 +121,7 @@ export default function CoverageTypePage() {
               icon={<UserSingleIcon className="text-white/60" />}
               title="Dirigeant seulement"
               description="Protection santé individuelle pour le dirigeant"
-              onClick={() => router.push('/beneficiaries')}
+              onClick={() => handleCoverageSelect('dirigeant-seulement')}
             />
 
             {/* Dirigeant et salarié */}
@@ -120,7 +129,7 @@ export default function CoverageTypePage() {
               icon={<UserGroupIcon className="text-white/60" />}
               title="Dirigeant et salarié"
               description="Couverture complète dirigeant + collaborateurs"
-              onClick={() => router.push('/beneficiaries')}
+              onClick={() => handleCoverageSelect('dirigeant-salarie')}
             />
           </div>
         </div>

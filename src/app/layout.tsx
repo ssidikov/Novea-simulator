@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { FormProvider } from "@/contexts/FormContext";
 
 export const metadata: Metadata = {
   title: "Novéa Simulateur - Mutuelle Santé",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
-        {children}
+        <FormProvider>
+          {children}
+        </FormProvider>
       </body>
     </html>
   );
