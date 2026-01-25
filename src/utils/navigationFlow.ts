@@ -173,6 +173,10 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
     currentPath === '/salary-employees/large-company' ||
     currentPath === '/salary-employees/very-large'
   ) {
+    return '/salary-employees/convention-collective'
+  }
+
+  if (currentPath === '/salary-employees/convention-collective') {
     return '/offer-setup/step1'
   }
 

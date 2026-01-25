@@ -7,23 +7,24 @@
 ## 🎨 Цветовая палитра
 
 ```css
---background: #0a253a       /* Основной фон */
---foreground: #ffffff       /* Основной текст */
---accent-green: #67d39d     /* Акцентный зеленый */
---accent-blue: #55c1ff      /* Акцентный синий */
---accent-purple: #715aff    /* Акцентный фиолетовый (hover) */
+--background: #0a253a /* Основной фон */ --foreground: #ffffff /* Основной текст */
+  --accent-green: #67d39d /* Акцентный зеленый */ --accent-blue: #55c1ff /* Акцентный синий */
+  --accent-purple: #715aff /* Акцентный фиолетовый (hover) */;
 ```
 
 ## 📐 Макет страницы
 
 ### Фон
+
 Все страницы используют единый фон:
+
 - Основной цвет: `#0a253a`
 - Декоративные элементы:
   - Зеленый блюр (top-right): `#67d39d` с opacity 10%
   - Синий блюр (bottom-left): `#55c1ff` с opacity 10%
 
 ### Контейнер контента
+
 ```tsx
 <div className='mx-auto flex min-h-screen w-full max-w-[920px] flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
   {/* Content */}
@@ -31,6 +32,7 @@
 ```
 
 ### Кнопка "Назад"
+
 ```tsx
 <button className='fixed left-4 top-8 z-10 flex h-[21px] items-center gap-2 opacity-70 transition-opacity hover:opacity-100 sm:left-8 lg:left-[62px] lg:top-[40px]'>
   <ArrowLeftIcon className='h-5 w-5 text-white sm:h-6 sm:w-6' />
@@ -56,10 +58,12 @@
 ## 🔤 Типографика
 
 ### Шрифты
+
 - **Основной**: Poppins (400, 500, 600, 700, 800)
 - **Дополнительный**: DM Sans (400, 500, 600, 700)
 
 ### Заголовки
+
 ```tsx
 // H1 - Основной заголовок
 <h1 className="font-['Poppins',sans-serif] text-3xl sm:text-4xl lg:text-[56px] font-extrabold leading-tight sm:leading-[60px] lg:leading-[70px] text-white">
@@ -69,6 +73,7 @@
 ```
 
 ### Теги
+
 ```tsx
 <div className='flex shrink-0 flex-col items-center justify-center rounded-full bg-white/10 px-[31px] py-[9px]'>
   <p className="font-['Poppins',sans-serif] text-center text-[12.484px] font-bold leading-[17.834px] text-white">
@@ -80,16 +85,13 @@
 ## 🎴 Компоненты
 
 ### OptionCard (Универсальная карточка)
+
 ```tsx
-<OptionCard
-  icon={<UsersIcon />}
-  title="Title"
-  description="Description"
-  onClick={handleClick}
-/>
+<OptionCard icon={<UsersIcon />} title='Title' description='Description' onClick={handleClick} />
 ```
 
 Особенности:
+
 - Адаптивные размеры: h-[136px]
 - Padding: `px-6 sm:px-8 lg:px-[35px]`
 - Иконка: `h-10 w-10 sm:h-12 sm:w-12`
@@ -97,6 +99,7 @@
 - Иконка галочки (checkmark) справа
 
 ### PageLayout (Общий макет)
+
 ```tsx
 <PageLayout showBackButton={true} onBack={handleBack}>
   {/* Content */}
@@ -104,27 +107,30 @@
 ```
 
 ### PageHeader (Заголовок страницы)
+
 ```tsx
 <PageHeader
-  tag="Configuration"
+  tag='Configuration'
   title={
     <>
       Combien de <span className='text-[#67d29d]'>salariés</span> ?
     </>
   }
-  description="Optional description"
+  description='Optional description'
 />
 ```
 
 ## 🎯 Иконки
 
 Все иконки адаптивные:
+
 ```tsx
 // Базовый размер: 20x20
 <UsersIcon className='h-5 w-5 sm:h-6 sm:w-6 text-white' />
 ```
 
 Доступные иконки:
+
 - `BriefcaseIcon`
 - `UsersIcon`
 - `UserSingleIcon`
@@ -161,17 +167,15 @@ opacity-70 hover:opacity-100
 ## 📋 Сетки
 
 ### Двухколоночная сетка (например, company-status)
+
 ```tsx
-<div className='grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-[35px]'>
-  {/* Cards */}
-</div>
+<div className='grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-[35px]'>{/* Cards */}</div>
 ```
 
 ### Одноколоночная сетка (например, coverage-type)
+
 ```tsx
-<div className='flex flex-col gap-3'>
-  {/* Cards */}
-</div>
+<div className='flex flex-col gap-3'>{/* Cards */}</div>
 ```
 
 ## ✅ Чеклист для новой страницы
@@ -189,6 +193,7 @@ opacity-70 hover:opacity-100
 ## 🚀 Примеры использования
 
 ### Простая страница с выбором
+
 ```tsx
 'use client'
 import { useRouter } from 'next/navigation'
@@ -204,22 +209,26 @@ export default function MyPage() {
     <PageLayout showBackButton onBack={() => router.back()}>
       <div className='flex w-full flex-col items-center gap-10 sm:gap-12 lg:gap-[62px]'>
         <PageHeader
-          tag="Configuration"
-          title={<>Your <span className='text-[#67d29d]'>Question</span>?</>}
-          description="Optional description here"
+          tag='Configuration'
+          title={
+            <>
+              Your <span className='text-[#67d29d]'>Question</span>?
+            </>
+          }
+          description='Optional description here'
         />
-        
+
         <div className='flex w-full flex-col items-center gap-3'>
           <OptionCard
             icon={<UsersIcon />}
-            title="Option 1"
-            description="Description 1"
+            title='Option 1'
+            description='Description 1'
             onClick={() => handleSelect('option1')}
           />
           <OptionCard
             icon={<UsersIcon />}
-            title="Option 2"
-            description="Description 2"
+            title='Option 2'
+            description='Description 2'
             onClick={() => handleSelect('option2')}
           />
         </div>

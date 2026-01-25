@@ -65,6 +65,7 @@ export interface FormData {
 
   // Для RH/Comptable
   companyName: string | null
+  conventionCollective: string | null
 
   // Offer setup данные
   offerPreferences: {
@@ -102,6 +103,7 @@ const initialFormData: FormData = {
   socialStatus: null,
   birthDate: null,
   companyName: null,
+  conventionCollective: null,
   offerPreferences: {},
   personalInfo: {},
 }
