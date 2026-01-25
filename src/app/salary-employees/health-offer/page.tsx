@@ -123,7 +123,13 @@ function UsersIcon() {
         strokeLinecap='round'
         opacity='0.6'
       />
-      <path d='M19 14C20.5 14.5 22 16 22 18V21' stroke='white' strokeWidth='2' strokeLinecap='round' opacity='0.6' />
+      <path
+        d='M19 14C20.5 14.5 22 16 22 18V21'
+        stroke='white'
+        strokeWidth='2'
+        strokeLinecap='round'
+        opacity='0.6'
+      />
     </svg>
   )
 }
@@ -196,7 +202,14 @@ interface OptionCardProps {
   fullWidth?: boolean
 }
 
-function OptionCard({ icon, title, description, value, onClick, fullWidth = false }: OptionCardProps) {
+function OptionCard({
+  icon,
+  title,
+  description,
+  value,
+  onClick,
+  fullWidth = false,
+}: OptionCardProps) {
   return (
     <button
       type='button'

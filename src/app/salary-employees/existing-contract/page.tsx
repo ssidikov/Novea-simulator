@@ -23,7 +23,13 @@ function CheckIcon() {
 function CloseIcon() {
   return (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <path d='M8 8L16 16M16 8L8 16' stroke='white' strokeWidth='2' strokeLinecap='round' opacity='0.6' />
+      <path
+        d='M8 8L16 16M16 8L8 16'
+        stroke='white'
+        strokeWidth='2'
+        strokeLinecap='round'
+        opacity='0.6'
+      />
     </svg>
   )
 }
@@ -166,8 +172,8 @@ export default function ExistingContractPage() {
 
           {/* Description */}
           <p className="font-['DM_Sans',sans-serif] w-full max-w-[489px] whitespace-pre-wrap text-center text-sm font-normal leading-relaxed text-white/80 sm:text-base sm:leading-[28.981px]">
-            Cette information nous permet de vous proposer la solution la plus adaptée à votre situation
-            actuelle.
+            Cette information nous permet de vous proposer la solution la plus adaptée à votre
+            situation actuelle.
           </p>
 
           {/* Options */}
