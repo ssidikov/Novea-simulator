@@ -1,248 +1,252 @@
-import { FormData } from '@/contexts/FormContext';
+import { FormData } from '@/contexts/FormContext'
 
 /**
  * Централизованная логика навигации для всех веток симулятора
  * Определяет следующий маршрут на основе текущего пути и данных формы
  */
 export function getNextRoute(currentPath: string, formData: FormData): string {
-  
   // ========== ВЕТКА 1: DIRIGEANT ==========
   if (formData.situation === 'dirigeant') {
     if (currentPath === '/') {
-      return '/coverage-type';
+      return '/coverage-type'
     }
-    
+
     if (currentPath === '/coverage-type') {
-      if (formData.coverageType === 'dirigeant-seulement' || formData.coverageType === 'dirigeant-salarie') {
-        return '/company-status';
+      if (
+        formData.coverageType === 'dirigeant-seulement' ||
+        formData.coverageType === 'dirigeant-salarie'
+      ) {
+        return '/company-status'
       }
       if (formData.coverageType === 'salarie-seulement') {
-        return '/salary-employees/count';
+        return '/salary-employees/count'
       }
     }
-    
+
     if (currentPath === '/company-status') {
       // SAS/SASU ветка
       if (formData.companyStatus === 'SAS/SASU') {
-        return '/legal-form/sas-sasu';
+        return '/legal-form/sas-sasu'
       }
       // SARL ветка
       if (formData.companyStatus === 'SARL') {
-        return '/legal-form/sarl';
+        return '/legal-form/sarl'
       }
       // SA ветка
       if (formData.companyStatus === 'SA') {
-        return '/legal-form/sa';
+        return '/legal-form/sa'
       }
       // EURL ветка
       if (formData.companyStatus === 'EURL') {
-        return '/legal-form/eurl';
+        return '/legal-form/eurl'
       }
       // SCEA/GEAC ветка
       if (formData.companyStatus === 'SCEA/GEAC') {
-        return '/legal-form/scea-geac';
+        return '/legal-form/scea-geac'
       }
       // Association ветка
       if (formData.companyStatus === 'association') {
-        return '/legal-form/association';
+        return '/legal-form/association'
       }
       // Autre ветка
       if (formData.companyStatus === 'autre') {
-        return '/legal-form/autre';
+        return '/legal-form/autre'
       }
     }
-    
+
     // SAS/SASU подветка
     if (currentPath === '/legal-form/sas-sasu') {
-      return '/legal-form/seul-ou-plusieurs';
+      return '/legal-form/seul-ou-plusieurs'
     }
-    
+
     if (currentPath === '/legal-form/seul-ou-plusieurs') {
       if (formData.sasSeulOuPlusieur === 'seul') {
-        return '/legal-form/conjoint-salarie';
+        return '/legal-form/conjoint-salarie'
       }
       if (formData.sasSeulOuPlusieur === 'plusieurs') {
-        return '/salary-employees/count';
+        return '/salary-employees/count'
       }
     }
-    
+
     if (currentPath === '/legal-form/conjoint-salarie') {
       if (formData.conjointSalarie === 'oui') {
-        return '/legal-form/remuneration';
+        return '/legal-form/remuneration'
       }
       if (formData.conjointSalarie === 'non') {
-        return '/offer-setup/step2';
+        return '/offer-setup/step2'
       }
     }
-    
+
     if (currentPath === '/legal-form/remuneration') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
-    
+
     // SARL подветка
     if (currentPath === '/legal-form/sarl') {
-      return '/legal-form/tns-question';
+      return '/legal-form/tns-question'
     }
-    
+
     if (currentPath === '/legal-form/tns-question') {
-      return '/legal-form/remuneration';
+      return '/legal-form/remuneration'
     }
-    
+
     // SA подветка
     if (currentPath === '/legal-form/sa') {
-      return '/legal-form/sa-seul-ou-plusieurs';
+      return '/legal-form/sa-seul-ou-plusieurs'
     }
-    
+
     if (currentPath === '/legal-form/sa-seul-ou-plusieurs') {
       if (formData.saSeulOuPlusieur === 'seul') {
-        return '/legal-form/sa-seul';
+        return '/legal-form/sa-seul'
       }
       if (formData.saSeulOuPlusieur === 'plusieurs') {
-        return '/legal-form/sa-plusieurs';
+        return '/legal-form/sa-plusieurs'
       }
     }
-    
+
     if (currentPath === '/legal-form/sa-seul') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
-    
+
     if (currentPath === '/legal-form/sa-plusieurs') {
-      return '/salary-employees/count';
+      return '/salary-employees/count'
     }
-    
+
     // EURL подветка
     if (currentPath === '/legal-form/eurl') {
-      return '/legal-form/eurl-gerant-salarie';
+      return '/legal-form/eurl-gerant-salarie'
     }
-    
+
     if (currentPath === '/legal-form/eurl-gerant-salarie') {
       if (formData.gerantSalarie === 'oui') {
-        return '/salary-employees/count';
+        return '/salary-employees/count'
       }
       if (formData.gerantSalarie === 'non') {
-        return '/legal-form/gerant-non-salarie';
+        return '/legal-form/gerant-non-salarie'
       }
     }
-    
+
     if (currentPath === '/legal-form/gerant-non-salarie') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
-    
+
     // SCEA/GEAC подветка
     if (currentPath === '/legal-form/scea-geac') {
-      return '/salary-employees/count';
+      return '/salary-employees/count'
     }
-    
+
     // Association подветка
     if (currentPath === '/legal-form/association') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
-    
+
     // Autre подветка
     if (currentPath === '/legal-form/autre') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
   }
-  
+
   // ========== ВЕТКА 2: ENTREPRISE ==========
   if (formData.situation === 'entreprise') {
     if (currentPath === '/') {
-      return '/employee-count';
+      return '/employee-count'
     }
-    
+
     if (currentPath === '/employee-count') {
-      return '/salary-employees/count';
+      return '/salary-employees/count'
     }
   }
-  
+
   // ========== ОБЩАЯ ЛОГИКА ДЛЯ SALARY EMPLOYEES ==========
   if (currentPath === '/salary-employees/count') {
     if (formData.employeeCount === '6-100') {
-      return '/salary-employees/large-company';
+      return '/salary-employees/large-company'
     }
     if (formData.employeeCount === '100+') {
-      return '/salary-employees/very-large';
+      return '/salary-employees/very-large'
     }
     // Для 1-5
-    return '/offer-setup/step1';
+    return '/offer-setup/step1'
   }
-  
-  if (currentPath === '/salary-employees/large-company' || 
-      currentPath === '/salary-employees/very-large') {
-    return '/offer-setup/step1';
+
+  if (
+    currentPath === '/salary-employees/large-company' ||
+    currentPath === '/salary-employees/very-large'
+  ) {
+    return '/offer-setup/step1'
   }
-  
+
   // ========== ВЕТКА 3: RETRAITÉ / INDTPT ==========
   if (formData.situation === 'retraite' || formData.situation === 'indtpt') {
     if (currentPath === '/') {
-      return '/retraite-indtpt/age';
+      return '/retraite-indtpt/age'
     }
-    
+
     if (currentPath === '/retraite-indtpt/age') {
-      return '/retraite-indtpt/social-status';
+      return '/retraite-indtpt/social-status'
     }
-    
+
     if (currentPath === '/retraite-indtpt/social-status') {
-      return '/retraite-indtpt/birth-date';
+      return '/retraite-indtpt/birth-date'
     }
-    
+
     if (currentPath === '/retraite-indtpt/birth-date') {
-      return '/offer-setup/step4';
+      return '/offer-setup/step4'
     }
-    
+
     if (currentPath === '/offer-setup/step4') {
-      return '/offer-setup/step2';
+      return '/offer-setup/step2'
     }
   }
-  
+
   // ========== ВЕТКА 4: RH / COMPTABLE ==========
   if (formData.situation === 'rh' || formData.situation === 'comptable') {
     if (currentPath === '/') {
-      return '/other-situations/rh-comptable';
+      return '/other-situations/rh-comptable'
     }
-    
+
     if (currentPath === '/other-situations/rh-comptable') {
-      return '/coverage-type';
+      return '/coverage-type'
     }
-    
+
     // Дальше следует общая логика coverage-type
   }
-  
+
   // ========== ВЕТКА 5: PARTI / ETUDIANT ==========
   if (formData.situation === 'parti' || formData.situation === 'etudiant') {
     if (currentPath === '/') {
-      return '/other-situations/parti-etudiant';
+      return '/other-situations/parti-etudiant'
     }
   }
-  
+
   // ========== ВЕТКА 6: SALARIÉ ENTR ==========
   if (formData.situation === 'salarie-entr') {
     if (currentPath === '/') {
-      return '/other-situations/salarie-entreprise';
+      return '/other-situations/salarie-entreprise'
     }
   }
-  
+
   // ========== ОБЩИЕ ФИНАЛЬНЫЕ ШАГИ ==========
   if (currentPath === '/offer-setup/step1') {
-    return '/offer-setup/step2';
+    return '/offer-setup/step2'
   }
-  
+
   if (currentPath === '/offer-setup/step2') {
-    return '/offer-setup/step3';
+    return '/offer-setup/step3'
   }
-  
+
   if (currentPath === '/offer-setup/step3') {
-    return '/offer';
+    return '/offer'
   }
-  
+
   if (currentPath === '/offer') {
     // Финальная страница - никуда не идем
-    return '/offer';
+    return '/offer'
   }
-  
+
   // Fallback - если не нашли маршрут
-  console.warn('No route found for:', { currentPath, formData });
-  return '/';
+  console.warn('No route found for:', { currentPath, formData })
+  return '/'
 }
 
 /**
@@ -250,13 +254,13 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
  */
 export function getPreviousRoute(currentPath: string, formData: FormData): string {
   // Простая логика - можно расширить если нужно
-  const pathSegments = currentPath.split('/').filter(Boolean);
-  
-  if (pathSegments.length === 0) return '/';
-  if (pathSegments.length === 1) return '/';
-  
+  const pathSegments = currentPath.split('/').filter(Boolean)
+
+  if (pathSegments.length === 0) return '/'
+  if (pathSegments.length === 1) return '/'
+
   // Убираем последний сегмент
-  return '/' + pathSegments.slice(0, -1).join('/');
+  return '/' + pathSegments.slice(0, -1).join('/')
 }
 
 /**
@@ -296,4 +300,4 @@ export const FIGMA_NODE_MAPPING: Record<string, string> = {
   '2001-2318': '/offer-setup/step4',
   '2001-2559': '/offer',
   '2001-2851': '/legal-form/sa-seul', // SA seul continuer (альтернативный node-id)
-};
+}

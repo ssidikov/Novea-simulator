@@ -3,6 +3,7 @@
 ## 📍 Главная страница → Ветки
 
 ### **1️⃣ DIRIGEANT**
+
 ```
 Quelle est votre situation ? (главная) → DIRIGEANT
   ↓
@@ -63,6 +64,7 @@ Qui souhaitez-vous couvrir ? (2001-2804: /coverage-type)
 ```
 
 ### **2️⃣ ENTREPRISE**
+
 ```
 Quelle est votre situation ? (главная) → ENTREPRISE
   ↓
@@ -75,6 +77,7 @@ count (2001-2747: /salary-employees/count)
 ```
 
 ### **3️⃣ RETRAITÉ / INDTPT**
+
 ```
 Quelle est votre situation ? (главная) → RETRAITÉ или INDTPT
   ↓
@@ -90,6 +93,7 @@ step2 (2001-2850: /offer-setup/step2)
 ```
 
 ### **4️⃣ RH / COMPTABLE**
+
 ```
 Quelle est votre situation ? (главная) → RH или COMPTABLE
   ↓
@@ -100,6 +104,7 @@ Qui souhaitez-vous couvrir ? (2001-2804: /coverage-type)
 ```
 
 ### **5️⃣ PARTICULIER / ÉTUDIANT**
+
 ```
 Quelle est votre situation ? (главная) → PARTI или ETUDIANT
   ↓
@@ -107,6 +112,7 @@ Quelle est votre situation ? (главная) → PARTI или ETUDIANT
 ```
 
 ### **6️⃣ SALARIÉ D'ENTREPRISE**
+
 ```
 Quelle est votre situation ? (главная) → SALARIÉ ENTR
   ↓
