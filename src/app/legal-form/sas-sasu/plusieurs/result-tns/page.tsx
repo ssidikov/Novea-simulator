@@ -5,12 +5,7 @@ import { useRouter } from 'next/navigation'
 // Icon components
 function CheckCircleIcon() {
   return (
-    <svg
-      width='16'
-      height='16'
-      viewBox='0 0 16 16'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <circle cx='8' cy='8' r='8' fill='currentColor' />
       <path
         d='M11 6L7 10L5 8'
@@ -25,12 +20,7 @@ function CheckCircleIcon() {
 
 function DocumentIcon() {
   return (
-    <svg
-      width='50'
-      height='50'
-      viewBox='0 0 50 50'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M29 4H12C10.9391 4 9.92172 4.42143 9.17157 5.17157C8.42143 5.92172 8 6.93913 8 8V42C8 43.0609 8.42143 44.0783 9.17157 44.8284C9.92172 45.5786 10.9391 46 12 46H38C39.0609 46 40.0783 45.5786 40.8284 44.8284C41.5786 44.0783 42 43.0609 42 42V17L29 4Z'
         stroke='white'
@@ -65,12 +55,7 @@ function DocumentIcon() {
 
 function CheckIconLarge() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M16.6663 5L7.49967 14.1667L3.33301 10'
         stroke='white'
@@ -84,12 +69,7 @@ function CheckIconLarge() {
 
 function PhoneIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M18.3337 14.1V16.6C18.3346 16.8321 18.2873 17.0618 18.1951 17.2745C18.1028 17.4871 17.9675 17.678 17.7978 17.8349C17.6281 17.9918 17.4276 18.1112 17.2091 18.1856C16.9905 18.26 16.7586 18.2876 16.5287 18.2667C13.9529 17.988 11.4796 17.1118 9.29199 15.7084C7.24203 14.4289 5.48272 12.6696 4.20366 10.6196C2.79699 8.42311 1.9208 5.93947 1.64533 3.35375C1.62449 3.12453 1.65182 2.89334 1.72573 2.67539C1.79965 2.45743 1.91836 2.25733 2.07438 2.08781C2.2304 1.91829 2.42031 1.78284 2.63209 1.68996C2.84387 1.59708 3.07276 1.54874 3.30449 1.54875H5.80449C6.21618 1.54472 6.61434 1.69491 6.92146 1.97156C7.22857 2.24822 7.42246 2.63007 7.46783 3.03958C7.55293 3.85891 7.72944 4.66665 7.99449 5.44625C8.10344 5.76017 8.11796 6.09945 8.03625 6.42166C7.95454 6.74386 7.78015 7.03517 7.53449 7.25875L6.46783 8.32542C7.62569 10.4286 9.37697 12.1799 11.4803 13.3377L12.547 12.2711C12.7706 12.0254 13.0619 11.851 13.3841 11.7693C13.7063 11.6876 14.0456 11.7021 14.3595 11.8111C15.1391 12.0761 15.9468 12.2526 16.7662 12.3377C17.1807 12.3837 17.5663 12.5813 17.8439 12.8939C18.1215 13.2065 18.2693 13.6112 18.262 14.0271L18.3337 14.1Z'
         stroke='white'
@@ -103,12 +83,7 @@ function PhoneIcon() {
 
 function MailIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M3.33301 3.33334H16.6663C17.583 3.33334 18.333 4.08334 18.333 5.00001V15C18.333 15.9167 17.583 16.6667 16.6663 16.6667H3.33301C2.41634 16.6667 1.66634 15.9167 1.66634 15V5.00001C1.66634 4.08334 2.41634 3.33334 3.33301 3.33334Z'
         stroke='white'
@@ -129,12 +104,7 @@ function MailIcon() {
 
 function BackIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12.5 5L7.5 10L12.5 15'
         stroke='white'

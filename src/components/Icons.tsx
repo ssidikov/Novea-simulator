@@ -92,18 +92,25 @@ export const BuildingOfficeIcon = ({ className }: { className?: string }) => (
 )
 
 export const CalendarIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="3" y="6" width="18" height="15" rx="2" stroke="currentColor" strokeWidth="2"/>
-    <path d="M3 10H21" stroke="currentColor" strokeWidth="2"/>
-    <path d="M8 3V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <path d="M16 3V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <rect x='3' y='6' width='18' height='15' rx='2' stroke='currentColor' strokeWidth='2' />
+    <path d='M3 10H21' stroke='currentColor' strokeWidth='2' />
+    <path d='M8 3V7' stroke='currentColor' strokeWidth='2' strokeLinecap='round' />
+    <path d='M16 3V7' stroke='currentColor' strokeWidth='2' strokeLinecap='round' />
   </svg>
 )
 
 export const MapPinIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 13.5C13.6569 13.5 15 12.1569 15 10.5C15 8.84315 13.6569 7.5 12 7.5C10.3431 7.5 9 8.84315 9 10.5C9 12.1569 10.3431 13.5 12 13.5Z" stroke="currentColor" strokeWidth="2"/>
-    <path d="M19.5 10.5C19.5 16.5 12 22.5 12 22.5C12 22.5 4.5 16.5 4.5 10.5C4.5 6.35786 7.85786 3 12 3C16.1421 3 19.5 6.35786 19.5 10.5Z" stroke="currentColor" strokeWidth="2"/>
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M12 13.5C13.6569 13.5 15 12.1569 15 10.5C15 8.84315 13.6569 7.5 12 7.5C10.3431 7.5 9 8.84315 9 10.5C9 12.1569 10.3431 13.5 12 13.5Z'
+      stroke='currentColor'
+      strokeWidth='2'
+    />
+    <path
+      d='M19.5 10.5C19.5 16.5 12 22.5 12 22.5C12 22.5 4.5 16.5 4.5 10.5C4.5 6.35786 7.85786 3 12 3C16.1421 3 19.5 6.35786 19.5 10.5Z'
+      stroke='currentColor'
+      strokeWidth='2'
+    />
   </svg>
 )
-

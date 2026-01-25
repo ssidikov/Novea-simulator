@@ -99,7 +99,10 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
       }
     }
 
-    if (currentPath === '/legal-form/sarl/result-tns' || currentPath === '/legal-form/sarl/result-entreprise') {
+    if (
+      currentPath === '/legal-form/sarl/result-tns' ||
+      currentPath === '/legal-form/sarl/result-entreprise'
+    ) {
       return '/offer-setup/step1'
     }
 

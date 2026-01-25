@@ -5,12 +5,7 @@ import { useRouter } from 'next/navigation'
 // Icon components
 function CheckCircleIcon() {
   return (
-    <svg
-      width='16'
-      height='16'
-      viewBox='0 0 16 16'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <circle cx='8' cy='8' r='8' fill='currentColor' />
       <path
         d='M11 6L7 10L5 8'
@@ -25,12 +20,7 @@ function CheckCircleIcon() {
 
 function BuildingIcon() {
   return (
-    <svg
-      width='50'
-      height='50'
-      viewBox='0 0 50 50'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='50' height='50' viewBox='0 0 50 50' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M6 42H44'
         stroke='white'
@@ -86,12 +76,7 @@ function BuildingIcon() {
 
 function ArrowRightIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M4 10H16M16 10L10 4M16 10L10 16'
         stroke='currentColor'
@@ -105,12 +90,7 @@ function ArrowRightIcon() {
 
 function CloseIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M15 5L5 15M5 5L15 15'
         stroke='currentColor'
@@ -124,12 +104,7 @@ function CloseIcon() {
 
 function BackIcon() {
   return (
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'>
+    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12.5 5L7.5 10L12.5 15'
         stroke='white'
@@ -193,8 +168,7 @@ export default function EntrepriseConfirmationPage() {
 
           {/* Title */}
           <h1 className="font-['Poppins',sans-serif] max-w-[606px] text-center text-3xl font-extrabold leading-tight text-white sm:text-4xl sm:leading-[60px] lg:text-[56px] lg:leading-[70px]">
-            On vous propose un{' '}
-            <span className='text-[#54c1ff]'>contrat d&apos;entreprise</span>
+            On vous propose un <span className='text-[#54c1ff]'>contrat d&apos;entreprise</span>
           </h1>
 
           {/* Description */}
