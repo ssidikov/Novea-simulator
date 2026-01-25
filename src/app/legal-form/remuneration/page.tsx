@@ -14,7 +14,10 @@ export default function RemunerationPage() {
 
   const handleContinue = (choice: OuiNon) => {
     updateFormData({ remuneration: choice })
-    const nextRoute = getNextRoute('/legal-form/remuneration', { ...formData, remuneration: choice })
+    const nextRoute = getNextRoute('/legal-form/remuneration', {
+      ...formData,
+      remuneration: choice,
+    })
     router.push(nextRoute)
   }
 
