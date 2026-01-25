@@ -67,6 +67,14 @@ export interface FormData {
   companyName: string | null
   conventionCollective: string | null
 
+  // Appointment data for 100+ employees
+  appointmentPhone: string | null
+  appointmentCompanyName: string | null
+  appointmentEmployeeCount: string | null
+  appointmentFullName: string | null
+  appointmentEmail: string | null
+  appointmentSector: string | null
+
   // Offer setup данные
   offerPreferences: {
     option1?: string
@@ -104,6 +112,12 @@ const initialFormData: FormData = {
   birthDate: null,
   companyName: null,
   conventionCollective: null,
+  appointmentPhone: null,
+  appointmentCompanyName: null,
+  appointmentEmployeeCount: null,
+  appointmentFullName: null,
+  appointmentEmail: null,
+  appointmentSector: null,
   offerPreferences: {},
   personalInfo: {},
 }
