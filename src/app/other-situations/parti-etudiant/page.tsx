@@ -20,8 +20,7 @@ export default function PartiEtudiantPage() {
       {/* Back button */}
       <button
         onClick={() => router.back()}
-        className='absolute top-10 left-[62px] flex items-center gap-2 text-white/70 hover:text-white transition-colors'
-      >
+        className='absolute top-10 left-[62px] flex items-center gap-2 text-white/70 hover:text-white transition-colors'>
         <ArrowLeftIcon />
         <span className='text-sm font-medium font-poppins'>Retour</span>
       </button>
@@ -52,8 +51,7 @@ export default function PartiEtudiantPage() {
                 height='40'
                 viewBox='0 0 40 40'
                 fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
+                xmlns='http://www.w3.org/2000/svg'>
                 <path
                   d='M20 3.33331C10.795 3.33331 3.33333 10.795 3.33333 20C3.33333 29.205 10.795 36.6666 20 36.6666C29.205 36.6666 36.6667 29.205 36.6667 20C36.6667 10.795 29.205 3.33331 20 3.33331ZM21.6667 28.3333H18.3333V25H21.6667V28.3333ZM21.6667 21.6666H18.3333V11.6666H21.6667V21.6666Z'
                   fill='white'
@@ -81,8 +79,7 @@ export default function PartiEtudiantPage() {
                     height='20'
                     viewBox='0 0 20 20'
                     fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
+                    xmlns='http://www.w3.org/2000/svg'>
                     <path
                       d='M10 17.5C10.9167 17.5 11.6667 16.75 11.6667 15.8333H8.33333C8.33333 16.75 9.08333 17.5 10 17.5ZM15 12.5V8.33333C15 5.85833 13.6417 3.76667 11.25 3.225V2.5C11.25 1.81667 10.6833 1.66667 10 1.66667C9.31667 1.66667 8.75 2.23333 8.75 2.91667V3.225C6.36667 3.76667 5 5.85 5 8.33333V12.5L3.33333 14.1667V15H16.6667V14.1667L15 12.5Z'
                       fill='white'
@@ -106,8 +103,7 @@ export default function PartiEtudiantPage() {
         {/* Contact button */}
         <button
           onClick={handleContact}
-          className='bg-[#67d29d] hover:bg-[#67d29d]/90 text-white text-base font-semibold font-poppins px-[31px] py-3 rounded-[10px] transition-colors leading-6'
-        >
+          className='bg-[#67d29d] hover:bg-[#67d29d]/90 text-white text-base font-semibold font-poppins px-[31px] py-3 rounded-[10px] transition-colors leading-6'>
           Nous contacter
         </button>
       </div>
