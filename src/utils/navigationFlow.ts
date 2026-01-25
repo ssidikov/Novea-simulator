@@ -150,6 +150,10 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
       return '/salary-employees/existing-contract'
     }
 
+    if (currentPath === '/legal-form/autre') {
+      return '/salary-employees/existing-contract'
+    }
+
     if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration/result-tns') {
       return '/offer-setup/step1'
     }
@@ -272,6 +276,10 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
   // ========== ВЕТКА 3: RETRAITÉ / INDTPT ==========
   if (formData.situation === 'retraite' || formData.situation === 'indtpt') {
     if (currentPath === '/') {
+      return '/retraite-indtpt'
+    }
+
+    if (currentPath === '/retraite-indtpt') {
       return '/retraite-indtpt/age'
     }
 

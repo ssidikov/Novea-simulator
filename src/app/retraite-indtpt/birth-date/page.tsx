@@ -1,42 +1,138 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import { useFormData } from '@/contexts/FormContext'
-import { getNextRoute } from '@/utils/navigationFlow'
-import PageTemplate from '@/components/PageTemplate'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { CalendarIcon } from '@/components/Icons';
 
 export default function BirthDatePage() {
-  const router = useRouter()
-  const { formData, updateFormData } = useFormData()
-  const [birthDate, setBirthDate] = useState('')
+  const router = useRouter();
+  const [userAge, setUserAge] = useState('');
+  const [partnerAge, setPartnerAge] = useState('');
 
   const handleContinue = () => {
-    updateFormData({ birthDate })
-    const nextRoute = getNextRoute('/retraite-indtpt/birth-date', formData)
-    router.push(nextRoute)
-  }
+    // TODO: Update form context with ages
+    router.push('/retraite-indtpt/age');
+  };
+
+  const handleBack = () => {
+    router.back();
+  };
 
   return (
-    <PageTemplate title='Quelle est votre date de naissance ?'>
-      <div className='space-y-6'>
-        <div>
-          <label className='block text-sm font-medium text-gray-700 mb-2'>Date de naissance</label>
-          <input
-            type='date'
-            value={birthDate}
-            onChange={(e) => setBirthDate(e.target.value)}
-            className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-          />
-        </div>
+    <div className="min-h-screen bg-[#0a253a] relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-[71.34px] left-[611.59px] w-[342.414px] h-[342.414px] rounded-full bg-[#67d39d] opacity-10 blur-[57.069px]" />
+      <div className="absolute top-[769.06px] left-[71.34px] w-[342.414px] h-[342.414px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]" />
 
-        <button
-          onClick={handleContinue}
-          disabled={!birthDate}
-          className='w-full px-6 py-3 bg-[#2A3F54] text-white rounded-lg hover:bg-[#1a2f44] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed'>
-          Continuer
-        </button>
+      {/* Back button */}
+      <button
+        onClick={handleBack}
+        className="absolute top-10 left-[62px] flex items-center gap-2 text-white opacity-70 hover:opacity-100 transition-opacity"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <span className="text-sm font-medium">Retour</span>
+      </button>
+
+      {/* Main content */}
+      <div className="flex flex-col items-center justify-start pt-20 px-4">
+        <div className="w-full max-w-[930px] flex flex-col items-center gap-8 px-[115px]">
+          {/* Header */}
+          <div className="flex flex-col items-center gap-8">
+            {/* Tag */}
+            <div className="bg-white/10 px-[31px] py-[9px] rounded-full">
+              <p className="text-white text-[12.484px] font-bold leading-[17.834px] text-center">
+                Vos Informations
+              </p>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-[56px] font-extrabold text-center text-white leading-[80.254px] max-w-[888px]">
+              Quel <span className="text-[#67d29d]">âge</span> avez-vous ?
+            </h1>
+
+            {/* Description */}
+            <p className="text-white/80 text-base text-center max-w-[615px] leading-[28.981px]">
+              La cotisation est déterminée en fonction de l'âge atteint au 31 décembre de l'année précédente.
+            </p>
+          </div>
+
+          {/* Form Card */}
+          <div className="w-[600px] bg-white/8 rounded-[10px] shadow-lg px-10 py-10 flex flex-col gap-6 mt-[60px]">
+            {/* Icon */}
+            <div className="w-[80px] h-[80px] rounded-full bg-gradient-to-b from-[#67d39d] to-[#55c1ff] flex items-center justify-center mx-auto">
+              <CalendarIcon className="w-10 h-10 text-white" />
+            </div>
+
+            {/* Form fields */}
+            <div className="flex flex-col gap-6 mt-6">
+              {/* User age */}
+              <div className="flex flex-col gap-[36px]">
+                <label className="text-white text-base font-semibold leading-6">
+                  Vous avez
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    value={userAge}
+                    onChange={(e) => setUserAge(e.target.value)}
+                    placeholder="Votre âge"
+                    className="w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors"
+                  />
+                  <span className="absolute right-5 top-4 text-white opacity-60 text-base font-medium">
+                    ans
+                  </span>
+                </div>
+              </div>
+
+              {/* Partner age */}
+              <div className="flex flex-col gap-[37px]">
+                <div>
+                  <label className="text-white text-base font-semibold leading-6">
+                    Votre partenaire a
+                  </label>
+                  <span className="text-white opacity-60 text-sm ml-2">(Optionnel)</span>
+                </div>
+                <div className="relative">
+                  <input
+                    type="number"
+                    value={partnerAge}
+                    onChange={(e) => setPartnerAge(e.target.value)}
+                    placeholder="Âge de votre partenaire"
+                    className="w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors"
+                  />
+                  <span className="absolute right-5 top-4 text-white opacity-60 text-base font-medium">
+                    ans
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Info box */}
+            <div className="bg-[#67d39d]/20 rounded-lg p-4 flex gap-3 mt-2">
+              <div className="w-[22px] h-[22px] rounded-full bg-[#67d39d] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-white">
+                  <path d="M7 1V7H1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M13 7H7V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <p className="text-white text-[13px] leading-5 opacity-70 max-w-[435px]">
+                L'âge pris en compte est celui que vous aurez au 31 décembre de l'année précédente. Cette information nous permet de calculer votre cotisation avec précision.
+              </p>
+            </div>
+          </div>
+
+          {/* Continue button */}
+          <button
+            onClick={handleContinue}
+            disabled={!userAge}
+            className="bg-[#67d29d] rounded-[10px] px-[31px] h-12 flex items-center justify-center hover:bg-[#5bc38d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-[60px]"
+          >
+            <span className="text-white text-base font-semibold">Continuer</span>
+          </button>
+        </div>
       </div>
-    </PageTemplate>
-  )
+    </div>
+  );
 }
