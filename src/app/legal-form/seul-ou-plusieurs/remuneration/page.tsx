@@ -5,50 +5,57 @@ import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
 
 // Icon components
-function UserIcon() {
+function CheckIcon() {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <circle cx='12' cy='8' r='4' stroke='white' strokeWidth='2' opacity='0.6' />
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className='text-white transition-colors group-hover:text-[#715aff]'>
       <path
-        d='M6 21V19C6 16.2386 8.23858 14 11 14H13C15.7614 14 18 16.2386 18 19V21'
-        stroke='white'
+        d='M20 6L9 17L4 12'
+        stroke='currentColor'
         strokeWidth='2'
         strokeLinecap='round'
-        opacity='0.6'
+        strokeLinejoin='round'
       />
     </svg>
   )
 }
 
-function UsersIcon() {
+function CloseIcon() {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <circle cx='9' cy='7' r='4' stroke='white' strokeWidth='2' opacity='0.6' />
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      className='text-white transition-colors group-hover:text-[#715aff]'>
       <path
-        d='M2 21V19C2 16.2386 4.23858 14 7 14H11C13.7614 14 16 16.2386 16 19V21'
-        stroke='white'
+        d='M18 6L6 18M6 6L18 18'
+        stroke='currentColor'
         strokeWidth='2'
         strokeLinecap='round'
-        opacity='0.6'
+        strokeLinejoin='round'
       />
-      <path
-        d='M16 11C17.6569 11 19 9.65685 19 8C19 6.34315 17.6569 5 16 5'
-        stroke='white'
-        strokeWidth='2'
-        strokeLinecap='round'
-        opacity='0.6'
-      />
-      <path d='M19 14C20.5 14.5 22 16 22 18V21' stroke='white' strokeWidth='2' strokeLinecap='round' opacity='0.6' />
     </svg>
   )
 }
 
 function ArrowRightIcon() {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'>
       <path
-        d='M9 6L15 12L9 18'
-        stroke='white'
+        d='M5 12H19M19 12L12 5M19 12L12 19'
+        stroke='currentColor'
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'
@@ -60,11 +67,16 @@ function ArrowRightIcon() {
 
 function BackIcon() {
   return (
-    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='20'
+      height='20'
+      viewBox='0 0 20 20'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12.5 5L7.5 10L12.5 15'
         stroke='white'
-        strokeWidth='2'
+        strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
       />
@@ -72,28 +84,23 @@ function BackIcon() {
   )
 }
 
+// OptionCard component
 interface OptionCardProps {
   icon: React.ReactNode
   title: string
   description: string
-  value: string
   onClick: () => void
 }
 
-function OptionCard({ icon, title, description, value, onClick }: OptionCardProps) {
+function OptionCard({ icon, title, description, onClick }: OptionCardProps) {
   return (
     <button
-      type='button'
       onClick={onClick}
-      className='group relative flex h-[136px] w-full items-center gap-[156px] rounded-xl bg-white/8 pl-[35px] pr-[21px] py-[15px] transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:shadow-[0px_10px_30px_rgba(0,0,0,0.3)] sm:w-[420px]'>
-      {/* Content */}
-      <div className='flex items-center gap-5'>
-        {/* Icon */}
-        <div className='flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[#715aff]'>
+      className='group relative flex h-[136px] w-full items-center gap-[156px] rounded-xl bg-white/8 pl-[35px] pr-[21px] py-[15px] transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:shadow-lg sm:w-[420px]'>
+      <div className='flex items-center gap-[20px]'>
+        <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[#715aff]'>
           {icon}
         </div>
-
-        {/* Text */}
         <div className='flex flex-col items-start gap-[3px] text-left text-white'>
           <p className="font-['Poppins',sans-serif] w-[300px] text-base font-semibold leading-6 transition-colors group-hover:text-[#0a253a]">
             {title}
@@ -103,8 +110,6 @@ function OptionCard({ icon, title, description, value, onClick }: OptionCardProp
           </p>
         </div>
       </div>
-
-      {/* Arrow */}
       <div className='absolute right-[21px] top-[92px]'>
         <ArrowRightIcon />
       </div>
@@ -112,7 +117,7 @@ function OptionCard({ icon, title, description, value, onClick }: OptionCardProp
   )
 }
 
-export default function SasSasuPage() {
+export default function RemunerationPage() {
   const router = useRouter()
   const { formData, updateFormData } = useFormData()
 
@@ -120,11 +125,11 @@ export default function SasSasuPage() {
     router.back()
   }
 
-  const handleSelect = (value: 'seul' | 'plusieurs') => {
-    updateFormData({ sasSeulOuPlusieur: value })
-    const nextRoute = getNextRoute('/legal-form/sas-sasu', {
+  const handleSelect = (value: 'oui' | 'non') => {
+    updateFormData({ remuneration: value })
+    const nextRoute = getNextRoute('/legal-form/seul-ou-plusieurs/remuneration', {
       ...formData,
-      sasSeulOuPlusieur: value,
+      remuneration: value,
     })
     router.push(nextRoute)
   }
@@ -133,8 +138,8 @@ export default function SasSasuPage() {
     <div className='relative min-h-screen w-full overflow-x-hidden bg-[#0a253a]'>
       {/* Background decorations */}
       <div className='pointer-events-none fixed left-0 top-0 h-[1062px] w-[1054px] opacity-5' />
-      <div className='pointer-events-none fixed left-[611.59px] top-[71.34px] h-[342.414px] w-[342.414px] rounded-full bg-[#67d39d] opacity-10 blur-[57.069px]' />
-      <div className='pointer-events-none fixed left-[71.34px] top-[619.59px] h-[342.414px] w-[342.414px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]' />
+      <div className='pointer-events-none fixed left-[611.59px] top-[71.34px] h-[342.406px] w-[342.406px] rounded-full bg-[#67d39d] opacity-10 blur-[57.069px]' />
+      <div className='pointer-events-none fixed left-[71.34px] top-[619.59px] h-[342.406px] w-[342.406px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]' />
 
       {/* Back button */}
       <button
@@ -149,7 +154,7 @@ export default function SasSasuPage() {
       {/* Main content */}
       <div className='mx-auto flex min-h-screen w-full max-w-[920px] flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
         <div className='flex w-full flex-col items-center gap-10 sm:gap-12 lg:gap-[62px]'>
-          {/* Header */}
+          {/* Header section */}
           <div className='flex w-full flex-col items-center gap-5 sm:gap-[22px]'>
             {/* Tag */}
             <div className='flex shrink-0 flex-col items-center justify-center rounded-full bg-white/10 px-[31px] py-[9px]'>
@@ -160,7 +165,7 @@ export default function SasSasuPage() {
 
             {/* Title */}
             <h1 className="font-['Poppins',sans-serif] w-full max-w-[606px] whitespace-pre-wrap text-center text-3xl font-extrabold leading-tight text-white sm:text-4xl sm:leading-[60px] lg:text-[56px] lg:leading-[70px]">
-              Combien y a-t-il <span className='text-[#67d39d]'>d'associés</span> ?
+              Est-ce que l'<span className='text-[#67d39d]'>associé</span> est rémunéré ?
             </h1>
           </div>
 
@@ -169,21 +174,19 @@ export default function SasSasuPage() {
             Cette information nous permet de mieux adapter votre couverture santé.
           </p>
 
-          {/* Options */}
+          {/* Options grid */}
           <div className='grid w-full grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-[35px]'>
             <OptionCard
-              icon={<UserIcon />}
-              title='Un seul'
-              description='Une seule personne associée'
-              value='seul'
-              onClick={() => handleSelect('seul')}
+              icon={<CheckIcon />}
+              title="Oui c'est le cas"
+              description="L'associé est rémunéré"
+              onClick={() => handleSelect('oui')}
             />
             <OptionCard
-              icon={<UsersIcon />}
-              title='Plusieurs'
-              description='Plusieurs personnes associées'
-              value='plusieurs'
-              onClick={() => handleSelect('plusieurs')}
+              icon={<CloseIcon />}
+              title="Non ce n'est pas le cas"
+              description="L'associé n'est pas rémunéré"
+              onClick={() => handleSelect('non')}
             />
           </div>
         </div>

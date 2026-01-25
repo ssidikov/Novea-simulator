@@ -56,29 +56,24 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
 
     // SAS/SASU подветка
     if (currentPath === '/legal-form/sas-sasu') {
-      return '/legal-form/seul-ou-plusieurs'
-    }
-
-    if (currentPath === '/legal-form/seul-ou-plusieurs') {
       if (formData.sasSeulOuPlusieur === 'seul') {
-        return '/legal-form/conjoint-salarie'
+        return '/legal-form/seul-ou-plusieurs/remuneration'
       }
       if (formData.sasSeulOuPlusieur === 'plusieurs') {
         return '/salary-employees/count'
       }
     }
 
-    if (currentPath === '/legal-form/conjoint-salarie') {
-      if (formData.conjointSalarie === 'oui') {
-        return '/legal-form/remuneration'
+    if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration') {
+      if (formData.remuneration === 'oui') {
+        return '/legal-form/seul-ou-plusieurs/remuneration/result-tns'
       }
-      if (formData.conjointSalarie === 'non') {
-        return '/offer-setup/step2'
-      }
+      // For 'non', go to offer setup
+      return '/offer-setup/step2'
     }
 
-    if (currentPath === '/legal-form/remuneration') {
-      return '/offer-setup/step2'
+    if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration/result-tns') {
+      return '/offer-setup/step1'
     }
 
     // SARL подветка

@@ -46,7 +46,7 @@ export interface FormData {
 
   // Развилки для SARL
   tnsStatus: OuiNon | null
-  remuneration: string | null
+  remuneration: OuiNon | null
 
   // Развилки для SA
   saSeulOuPlusieur: SeulOuPlusieur | null
