@@ -13,7 +13,7 @@ export default function LocationPage() {
   const handleContinue = () => {
     // Save location to form data
     updateFormData({
-      city: location,
+      location: location,
     })
 
     // Navigate to existing contract question

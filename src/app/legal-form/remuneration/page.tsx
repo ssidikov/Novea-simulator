@@ -5,40 +5,35 @@ import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
 import PageTemplate from '@/components/PageTemplate'
 import { useState } from 'react'
+import type { OuiNon } from '@/contexts/FormContext'
 
 export default function RemunerationPage() {
   const router = useRouter()
   const { formData, updateFormData } = useFormData()
-  const [remuneration, setRemuneration] = useState('')
+  const [remuneration, setRemuneration] = useState<OuiNon | null>(null)
 
-  const handleContinue = () => {
-    updateFormData({ remuneration })
-    const nextRoute = getNextRoute('/legal-form/remuneration', formData)
+  const handleContinue = (choice: OuiNon) => {
+    updateFormData({ remuneration: choice })
+    const nextRoute = getNextRoute('/legal-form/remuneration', { ...formData, remuneration: choice })
     router.push(nextRoute)
   }
 
   return (
-    <PageTemplate title='Quelle est votre rémunération ?'>
+    <PageTemplate title='Êtes-vous rémunéré ?'>
       <div className='space-y-6'>
-        <div>
-          <label className='block text-sm font-medium text-gray-700 mb-2'>
-            Rémunération annuelle (€)
-          </label>
-          <input
-            type='number'
-            value={remuneration}
-            onChange={(e) => setRemuneration(e.target.value)}
-            className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'
-            placeholder='Ex: 45000'
-          />
-        </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          <button
+            onClick={() => handleContinue('oui')}
+            className='p-6 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all'>
+            <span className='font-semibold text-lg'>Oui</span>
+          </button>
 
-        <button
-          onClick={handleContinue}
-          disabled={!remuneration}
-          className='w-full px-6 py-3 bg-[#2A3F54] text-white rounded-lg hover:bg-[#1a2f44] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed'>
-          Continuer
-        </button>
+          <button
+            onClick={() => handleContinue('non')}
+            className='p-6 border-2 border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all'>
+            <span className='font-semibold text-lg'>Non</span>
+          </button>
+        </div>
       </div>
     </PageTemplate>
   )

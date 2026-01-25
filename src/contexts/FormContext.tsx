@@ -64,6 +64,11 @@ export interface FormData {
   age: string | null
   socialStatus: string | null
   birthDate: string | null
+  location: string | null
+  partnerCoverage: OuiNon | null
+  childrenCoverage: '1' | '2+' | 'non' | null
+  userAge: string | null
+  partnerAge: string | null
 
   // Для RH/Comptable
   companyName: string | null
@@ -71,6 +76,7 @@ export interface FormData {
   existingContract: string | null
   situationDetails: string | null
   healthOffer: string | null
+  rhCoverageType: 'salaries' | 'dirigeant-seulement' | 'dirigeant-salarie' | null
 
   // Appointment data for 100+ employees
   appointmentPhone: string | null
@@ -117,11 +123,17 @@ const initialFormData: FormData = {
   age: null,
   socialStatus: null,
   birthDate: null,
+  location: null,
+  partnerCoverage: null,
+  childrenCoverage: null,
+  userAge: null,
+  partnerAge: null,
   companyName: null,
   conventionCollective: null,
   existingContract: null,
   situationDetails: null,
   healthOffer: null,
+  rhCoverageType: null,
   appointmentPhone: null,
   appointmentCompanyName: null,
   appointmentEmployeeCount: null,

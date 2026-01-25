@@ -14,8 +14,8 @@ export default function SarlResultTnsPage() {
   const handleContinue = () => {
     // Save ages to form data
     updateFormData({
-      age: userAge ? parseInt(userAge) : null,
-      // You may want to add partnerAge to FormContext if needed
+      userAge: userAge,
+      partnerAge: partnerAge,
     })
 
     // Navigate to location page
