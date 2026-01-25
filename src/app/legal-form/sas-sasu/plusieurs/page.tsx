@@ -5,7 +5,7 @@ import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
 
 // Icon components
-function CheckIcon() {
+function UserIcon() {
   return (
     <svg
       width='24'
@@ -15,27 +15,16 @@ function CheckIcon() {
       xmlns='http://www.w3.org/2000/svg'
       className='text-white transition-colors group-hover:text-[#715aff]'>
       <path
-        d='M20 6L9 17L4 12'
+        d='M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21'
         stroke='currentColor'
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'
       />
-    </svg>
-  )
-}
-
-function CloseIcon() {
-  return (
-    <svg
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      className='text-white transition-colors group-hover:text-[#715aff]'>
-      <path
-        d='M18 6L6 18M6 6L18 18'
+      <circle
+        cx='12'
+        cy='7'
+        r='4'
         stroke='currentColor'
         strokeWidth='2'
         strokeLinecap='round'
@@ -47,7 +36,12 @@ function CloseIcon() {
 
 function ArrowRightIcon() {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M5 12H19M19 12L12 5M19 12L12 19'
         stroke='currentColor'
@@ -62,7 +56,12 @@ function ArrowRightIcon() {
 
 function BackIcon() {
   return (
-    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='20'
+      height='20'
+      viewBox='0 0 20 20'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12.5 5L7.5 10L12.5 15'
         stroke='white'
@@ -107,7 +106,7 @@ function OptionCard({ icon, title, description, onClick }: OptionCardProps) {
   )
 }
 
-export default function RemunerationPage() {
+export default function PlusieursAssociesPage() {
   const router = useRouter()
   const { formData, updateFormData } = useFormData()
 
@@ -115,11 +114,11 @@ export default function RemunerationPage() {
     router.back()
   }
 
-  const handleSelect = (value: 'oui' | 'non') => {
-    updateFormData({ remuneration: value })
-    const nextRoute = getNextRoute('/legal-form/seul-ou-plusieurs/remuneration', {
+  const handleSelect = (value: 'remunere' | 'non-remunere') => {
+    updateFormData({ associeRemunere: value })
+    const nextRoute = getNextRoute('/legal-form/sas-sasu/plusieurs', {
       ...formData,
-      remuneration: value,
+      associeRemunere: value,
     })
     router.push(nextRoute)
   }
@@ -155,28 +154,28 @@ export default function RemunerationPage() {
 
             {/* Title */}
             <h1 className="font-['Poppins',sans-serif] w-full max-w-[606px] whitespace-pre-wrap text-center text-3xl font-extrabold leading-tight text-white sm:text-4xl sm:leading-[60px] lg:text-[56px] lg:leading-[70px]">
-              Est-ce que l'<span className='text-[#67d39d]'>associé</span> est rémunéré ?
+              Choisissez le <span className='text-[#67d39d]'>contrat</span> qui vous convient
             </h1>
           </div>
 
           {/* Description */}
           <p className="font-['DM_Sans',sans-serif] w-full max-w-[489px] whitespace-pre-wrap text-center text-sm font-normal leading-relaxed text-white/80 sm:text-base sm:leading-[28.981px]">
-            Cette information nous permet de mieux adapter votre couverture santé.
+            Sélectionnez l&apos;option qui correspond à votre situation professionnelle
           </p>
 
           {/* Options grid */}
           <div className='grid w-full grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:gap-[35px]'>
             <OptionCard
-              icon={<CheckIcon />}
-              title="Oui c'est le cas"
-              description="L'associé est rémunéré"
-              onClick={() => handleSelect('oui')}
+              icon={<UserIcon />}
+              title='Je suis rémunéré'
+              description="Vous êtes couvert par l'entreprise en tant qu'assimilé-salarié après l'accord du conseil d'administration"
+              onClick={() => handleSelect('remunere')}
             />
             <OptionCard
-              icon={<CloseIcon />}
-              title="Non ce n'est pas le cas"
-              description="L'associé n'est pas rémunéré"
-              onClick={() => handleSelect('non')}
+              icon={<UserIcon />}
+              title='Plusieurs'
+              description="Vous n'êtes pas couvert par l'entreprise, mais vous pouvez souscrire à un contrat TNS"
+              onClick={() => handleSelect('non-remunere')}
             />
           </div>
         </div>

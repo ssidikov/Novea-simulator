@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { DocumentIcon, ArrowRightIcon, CloseIcon, CheckIcon } from '@/components/Icons';
 
-export default function GerantNonSalariePage() {
+export default function SaSeulResultPage() {
   const router = useRouter();
 
   const handleContinue = () => {

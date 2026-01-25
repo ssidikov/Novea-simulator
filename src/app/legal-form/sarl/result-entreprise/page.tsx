@@ -1,13 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { DocumentIcon, ArrowRightIcon, CloseIcon, CheckIcon } from '@/components/Icons';
+import { BuildingIcon, ArrowRightIcon, CloseIcon, CheckIcon } from '@/components/Icons';
 
-export default function GerantNonSalariePage() {
+export default function SarlResultEntreprisePage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/salary-employees/existing-contract');
+    router.push('/salary-employees/count');
   };
 
   const handleBack = () => {
@@ -17,8 +17,8 @@ export default function GerantNonSalariePage() {
   return (
     <div className="min-h-screen bg-[#0a253a] relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-[71.34px] left-[611.59px] w-[342.414px] h-[342.414px] rounded-full bg-[#67d39d] opacity-10 blur-[57.069px]" />
-      <div className="absolute top-[659.39px] left-[71.34px] w-[342.414px] h-[342.414px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]" />
+      <div className="absolute top-[71.34px] left-[611.59px] w-[342.414px] h-[342.414px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]" />
+      <div className="absolute top-[520.54px] left-[71.34px] w-[342.414px] h-[342.414px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]" />
 
       {/* Back button */}
       <button
@@ -43,22 +43,22 @@ export default function GerantNonSalariePage() {
           </div>
 
           {/* Icon */}
-          <div className="w-[100px] h-[100px] rounded-full bg-gradient-to-b from-[#67d39d] to-[#55c1ff] flex items-center justify-center">
-            <DocumentIcon className="w-[50px] h-[50px] text-white" />
+          <div className="w-[100px] h-[100px] rounded-full bg-gradient-to-b from-[#55c1ff] to-[#715aff] flex items-center justify-center">
+            <BuildingIcon className="w-[50px] h-[50px] text-white" />
           </div>
 
           {/* Title */}
           <h1 className="text-[56px] font-extrabold text-center text-white leading-[70px] max-w-[606px]">
-            Il vous faut un <span className="text-[#67d29d]">contrat TNS</span>
+            On vous propose un <span className="text-[#54c1ff]">contrat d&apos;entreprise</span>
           </h1>
 
           {/* Description */}
-          <p className="text-white/90 text-lg text-center max-w-[662px] leading-[28.981px]">
-            Pour le gérant associé unique, il ou elle peut uniquement souscrire à un contrat TNS (Travailleur Non Salarié).
+          <p className="text-white/90 text-lg text-center max-w-[681px] leading-[28.981px]">
+            Un contrat collectif d&apos;entreprise est recommandé pour votre situation. Ce type de contrat permet de couvrir les dirigeants rémunérés et les salariés au sein d&apos;un même contrat.
           </p>
 
           {/* Confirmation card */}
-          <div className="w-[700px] bg-white/8 rounded-[10px] shadow-lg px-10 py-10 flex flex-col gap-8 mt-[157px]">
+          <div className="w-[700px] bg-white/8 rounded-[10px] shadow-lg px-10 py-10 flex flex-col gap-8 mt-[116px]">
             {/* Question */}
             <div className="flex flex-col items-center gap-3">
               <h3 className="text-white text-2xl font-semibold text-center leading-8">
@@ -73,7 +73,7 @@ export default function GerantNonSalariePage() {
             <div className="flex items-center gap-4">
               <button
                 onClick={handleContinue}
-                className="flex-1 max-w-[300px] h-[52px] bg-[#67d29d] rounded-[10px] flex items-center justify-center gap-[10px] hover:bg-[#5bc38d] transition-colors"
+                className="flex-1 max-w-[300px] h-[52px] bg-[#55c1ff] rounded-[10px] flex items-center justify-center gap-[10px] hover:bg-[#4ab0e6] transition-colors"
               >
                 <span className="text-white text-base font-semibold">Oui, continuer</span>
                 <ArrowRightIcon className="w-5 h-5 text-white" />
@@ -81,10 +81,10 @@ export default function GerantNonSalariePage() {
 
               <button
                 onClick={handleBack}
-                className="flex-1 max-w-[304px] h-[52px] bg-white/20 border-2 border-[#67d29d] rounded-[10px] flex items-center justify-center gap-[10px] hover:bg-white/30 transition-colors"
+                className="flex-1 max-w-[304px] h-[52px] bg-white border-2 border-[#55c1ff] rounded-[10px] flex items-center justify-center gap-[10px] hover:bg-gray-50 transition-colors"
               >
-                <CloseIcon className="w-5 h-5 text-[#67d29d]" />
-                <span className="text-[#67d29d] text-base font-semibold">Non, revenir</span>
+                <CloseIcon className="w-5 h-5 text-[#55c1ff]" />
+                <span className="text-[#55c1ff] text-base font-semibold">Non, revenir</span>
               </button>
             </div>
           </div>

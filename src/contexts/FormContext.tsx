@@ -43,10 +43,12 @@ export interface FormData {
   // Развилки для SAS/SASU
   sasSeulOuPlusieur: SeulOuPlusieur | null
   conjointSalarie: OuiNon | null
+  associeRemunere: 'remunere' | 'non-remunere' | null
 
   // Развилки для SARL
   tnsStatus: OuiNon | null
   remuneration: OuiNon | null
+  sarlContractType: 'tns' | 'entreprise' | null
 
   // Развилки для SA
   saSeulOuPlusieur: SeulOuPlusieur | null
@@ -104,8 +106,10 @@ const initialFormData: FormData = {
   companyStatus: null,
   sasSeulOuPlusieur: null,
   conjointSalarie: null,
+  associeRemunere: null,
   tnsStatus: null,
   remuneration: null,
+  sarlContractType: null,
   saSeulOuPlusieur: null,
   saEmployeeCount: null,
   gerantSalarie: null,

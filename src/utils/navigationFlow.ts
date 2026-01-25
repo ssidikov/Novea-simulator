@@ -60,19 +60,98 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
         return '/legal-form/seul-ou-plusieurs/remuneration'
       }
       if (formData.sasSeulOuPlusieur === 'plusieurs') {
-        return '/salary-employees/count'
+        return '/legal-form/sas-sasu/plusieurs'
       }
+    }
+
+    if (currentPath === '/legal-form/sas-sasu/plusieurs') {
+      if (formData.associeRemunere === 'remunere') {
+        return '/legal-form/sas-sasu/plusieurs/remunere'
+      }
+      if (formData.associeRemunere === 'non-remunere') {
+        return '/legal-form/sas-sasu/plusieurs/result-tns'
+      }
+    }
+
+    if (currentPath === '/legal-form/sas-sasu/plusieurs/remunere') {
+      return '/salary-employees/count'
+    }
+
+    if (currentPath === '/legal-form/sas-sasu/plusieurs/result-tns') {
+      return '/offer-setup/step1'
     }
 
     if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration') {
       if (formData.remuneration === 'oui') {
         return '/legal-form/seul-ou-plusieurs/remuneration/result-tns'
       }
-      // For 'non', go to offer setup
-      return '/offer-setup/step2'
+      // For 'non', show entreprise contract result
+      return '/legal-form/seul-ou-plusieurs/remuneration/result-entreprise'
+    }
+
+    // SARL navigation
+    if (currentPath === '/legal-form/sarl') {
+      if (formData.sarlContractType === 'tns') {
+        return '/legal-form/sarl/result-tns'
+      }
+      if (formData.sarlContractType === 'entreprise') {
+        return '/legal-form/sarl/result-entreprise'
+      }
+    }
+
+    if (currentPath === '/legal-form/sarl/result-tns' || currentPath === '/legal-form/sarl/result-entreprise') {
+      return '/offer-setup/step1'
+    }
+
+    // SA navigation
+    if (currentPath === '/legal-form/sa') {
+      if (formData.saSeulOuPlusieur === 'seul') {
+        return '/legal-form/sa/seul'
+      }
+      if (formData.saSeulOuPlusieur === 'plusieurs') {
+        return '/legal-form/sa/plusieurs'
+      }
+    }
+
+    if (currentPath === '/legal-form/sa/seul') {
+      return '/salary-employees/existing-contract'
+    }
+
+    if (currentPath === '/legal-form/sa/plusieurs') {
+      return '/salary-employees/count'
+    }
+
+    // EURL navigation
+    if (currentPath === '/legal-form/eurl') {
+      if (formData.gerantSalarie === 'oui') {
+        return '/legal-form/eurl-gerant-salarie'
+      }
+      if (formData.gerantSalarie === 'non') {
+        return '/legal-form/gerant-non-salarie'
+      }
+    }
+
+    if (currentPath === '/legal-form/eurl-gerant-salarie') {
+      return '/salary-employees/count'
+    }
+
+    if (currentPath === '/legal-form/gerant-non-salarie') {
+      return '/salary-employees/existing-contract'
+    }
+
+    if (currentPath === '/legal-form/scea-geac') {
+      return '/salary-employees/count'
+    }
+
+    if (currentPath === '/legal-form/association') {
+      return '/salary-employees/existing-contract'
     }
 
     if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration/result-tns') {
+      return '/offer-setup/step1'
+    }
+
+    if (currentPath === '/legal-form/seul-ou-plusieurs/remuneration/result-entreprise') {
       return '/offer-setup/step1'
     }
 
