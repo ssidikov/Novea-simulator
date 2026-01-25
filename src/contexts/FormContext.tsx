@@ -66,6 +66,9 @@ export interface FormData {
   // Для RH/Comptable
   companyName: string | null
   conventionCollective: string | null
+  existingContract: string | null
+  situationDetails: string | null
+  healthOffer: string | null
 
   // Appointment data for 100+ employees
   appointmentPhone: string | null
@@ -112,6 +115,9 @@ const initialFormData: FormData = {
   birthDate: null,
   companyName: null,
   conventionCollective: null,
+  existingContract: null,
+  situationDetails: null,
+  healthOffer: null,
   appointmentPhone: null,
   appointmentCompanyName: null,
   appointmentEmployeeCount: null,

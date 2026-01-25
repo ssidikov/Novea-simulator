@@ -32,7 +32,16 @@ function PhoneIcon() {
 function BuildingIcon() {
   return (
     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='3' y='3' width='14' height='14' rx='1' stroke='white' strokeWidth='1.5' opacity='0.4' />
+      <rect
+        x='3'
+        y='3'
+        width='14'
+        height='14'
+        rx='1'
+        stroke='white'
+        strokeWidth='1.5'
+        opacity='0.4'
+      />
       <path d='M10 3V17' stroke='white' strokeWidth='1.5' opacity='0.4' />
       <path d='M3 10H17' stroke='white' strokeWidth='1.5' opacity='0.4' />
       <circle cx='7' cy='7' r='0.5' fill='white' opacity='0.4' />
@@ -75,7 +84,16 @@ function UserIcon() {
 function MailIcon() {
   return (
     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='2' y='5' width='16' height='10' rx='2' stroke='white' strokeWidth='1.5' opacity='0.4' />
+      <rect
+        x='2'
+        y='5'
+        width='16'
+        height='10'
+        rx='2'
+        stroke='white'
+        strokeWidth='1.5'
+        opacity='0.4'
+      />
       <path d='M2 7L10 12L18 7' stroke='white' strokeWidth='1.5' opacity='0.4' />
     </svg>
   )
@@ -84,8 +102,22 @@ function MailIcon() {
 function BriefcaseIcon() {
   return (
     <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='2' y='7' width='16' height='9' rx='2' stroke='white' strokeWidth='1.5' opacity='0.4' />
-      <path d='M6 7V5C6 3.9 6.9 3 8 3H12C13.1 3 14 3.9 14 5V7' stroke='white' strokeWidth='1.5' opacity='0.4' />
+      <rect
+        x='2'
+        y='7'
+        width='16'
+        height='9'
+        rx='2'
+        stroke='white'
+        strokeWidth='1.5'
+        opacity='0.4'
+      />
+      <path
+        d='M6 7V5C6 3.9 6.9 3 8 3H12C13.1 3 14 3.9 14 5V7'
+        stroke='white'
+        strokeWidth='1.5'
+        opacity='0.4'
+      />
     </svg>
   )
 }
@@ -154,7 +186,9 @@ export default function VeryLargePage() {
 
       {/* Main content */}
       <div className='mx-auto flex min-h-screen w-full max-w-[920px] flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[80px]'>
-        <form onSubmit={handleSubmit} className='flex w-full flex-col items-center gap-8 lg:gap-[32px]'>
+        <form
+          onSubmit={handleSubmit}
+          className='flex w-full flex-col items-center gap-8 lg:gap-[32px]'>
           {/* Tag */}
           <div className='flex shrink-0 flex-col items-center justify-center rounded-full bg-white/10 px-[31px] py-[9px]'>
             <p className="font-['Poppins',sans-serif] text-xs font-bold leading-[17.834px] text-white">
@@ -174,7 +208,8 @@ export default function VeryLargePage() {
 
           {/* Description */}
           <p className="font-['DM_Sans',sans-serif] w-full max-w-[576px] whitespace-pre-wrap text-center text-sm font-normal leading-relaxed text-white/80 sm:text-base sm:leading-[28.981px]">
-            Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour prendre rendez-vous.
+            Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour prendre
+            rendez-vous.
           </p>
 
           {/* Form fields - 2 column grid */}

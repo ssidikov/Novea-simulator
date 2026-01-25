@@ -177,6 +177,18 @@ export function getNextRoute(currentPath: string, formData: FormData): string {
   }
 
   if (currentPath === '/salary-employees/convention-collective') {
+    return '/salary-employees/existing-contract'
+  }
+
+  if (currentPath === '/salary-employees/existing-contract') {
+    return '/salary-employees/situation-details'
+  }
+
+  if (currentPath === '/salary-employees/situation-details') {
+    return '/salary-employees/health-offer'
+  }
+
+  if (currentPath === '/salary-employees/health-offer') {
     return '/offer-setup/step1'
   }
 
