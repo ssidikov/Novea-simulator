@@ -5,6 +5,7 @@
 ### Шаг 1: Анализ текущей страницы
 
 Найдите повторяющиеся паттерны:
+
 - Background decorations (3 div'а с декорациями)
 - Back button
 - Layout container
@@ -16,22 +17,24 @@
 ### Шаг 2: Замена imports
 
 **Было:**
+
 ```tsx
 import { useRouter } from 'next/navigation'
 import { ArrowLeftIcon, SomeIcon } from '@/components/Icons'
 ```
 
 **Стало:**
+
 ```tsx
 import { useRouter } from 'next/navigation'
-import { 
-  PageLayout, 
-  PageContainer, 
-  PageSection, 
-  PageHeader, 
-  BackButton, 
-  OptionGrid,  // или OptionList
-  OptionButton 
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid, // или OptionList
+  OptionButton,
 } from '@/components/ui'
 import { SomeIcon } from '@/components/Icons'
 ```
@@ -39,6 +42,7 @@ import { SomeIcon } from '@/components/Icons'
 ### Шаг 3: Замена Layout
 
 **Было:**
+
 ```tsx
 return (
   <div className='relative min-h-screen w-full bg-[#0a253a] overflow-x-hidden'>
@@ -46,9 +50,9 @@ return (
     <div className='pointer-events-none fixed left-0 top-0 h-[1062px] w-[1054px] opacity-5' />
     <div className='pointer-events-none fixed left-[611.59px] top-[71.34px] h-[342.406px] w-[342.406px] rounded-full bg-[#67d39d] opacity-10 blur-[57.069px]' />
     <div className='pointer-events-none fixed left-[71.34px] top-[619.59px] h-[342.406px] w-[342.406px] rounded-full bg-[#55c1ff] opacity-10 blur-[57.069px]' />
-    
+
     {/* Back button */}
-    <button onClick={() => router.back()} className="...">
+    <button onClick={() => router.back()} className='...'>
       <ArrowLeftIcon />
       <p>Retour</p>
     </button>
@@ -61,14 +65,13 @@ return (
 ```
 
 **Стало:**
+
 ```tsx
 return (
   <PageLayout>
     <BackButton />
     <PageContainer>
-      <PageSection>
-        {/* content */}
-      </PageSection>
+      <PageSection>{/* content */}</PageSection>
     </PageContainer>
   </PageLayout>
 )
@@ -79,6 +82,7 @@ return (
 ### Шаг 4: Замена Header
 
 **Было:**
+
 ```tsx
 <div className='flex w-full flex-col items-center gap-[22px]'>
   <Tag txt="Configuration" />
@@ -95,9 +99,10 @@ return (
 ```
 
 **Стало:**
+
 ```tsx
 <PageHeader
-  tag="Configuration"
+  tag='Configuration'
   title={
     <>
       {`Quel est le `}
@@ -105,8 +110,8 @@ return (
       {` ?`}
     </>
   }
-  description="Description text here"
-  maxWidth="606px"  // опционально
+  description='Description text here'
+  maxWidth='606px' // опционально
 />
 ```
 
@@ -115,6 +120,7 @@ return (
 ### Шаг 5: Замена Cards на OptionButton
 
 **Было:**
+
 ```tsx
 interface CardProps {
   icon: React.ReactNode
@@ -125,7 +131,9 @@ interface CardProps {
 
 function Card({ icon, title, description, onClick }: CardProps) {
   return (
-    <button onClick={onClick} className="group relative flex h-[136px] w-full items-center rounded-xl bg-white/8 px-8 py-4 transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:shadow-[0px_10px_30px_-5px_rgba(0,0,0,0.3)]">
+    <button
+      onClick={onClick}
+      className='group relative flex h-[136px] w-full items-center rounded-xl bg-white/8 px-8 py-4 transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:shadow-[0px_10px_30px_-5px_rgba(0,0,0,0.3)]'>
       <div className='flex items-center gap-5'>
         <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[#715aff]'>
           {icon}
@@ -149,20 +157,21 @@ function Card({ icon, title, description, onClick }: CardProps) {
 }
 
 // Usage
-<div className='grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-[35px]'>
-  <Card icon={<Icon />} title="Title" description="Desc" onClick={handler} />
+;<div className='grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-[35px]'>
+  <Card icon={<Icon />} title='Title' description='Desc' onClick={handler} />
 </div>
 ```
 
 **Стало:**
+
 ```tsx
 <OptionGrid>
-  <OptionButton 
-    icon={<Icon className='text-white/60' />} 
-    title="Title" 
-    description="Desc" 
+  <OptionButton
+    icon={<Icon className='text-white/60' />}
+    title='Title'
+    description='Desc'
     onClick={handler}
-    variant="hover-white"  // default | hover-white | hover-subtle
+    variant='hover-white' // default | hover-white | hover-subtle
   />
 </OptionGrid>
 ```
@@ -172,6 +181,7 @@ function Card({ icon, title, description, onClick }: CardProps) {
 ### Шаг 6: Выбор между OptionGrid и OptionList
 
 **OptionGrid** - для сетки 2 колонки (как на главной странице):
+
 ```tsx
 <OptionGrid>
   <OptionButton {...} />
@@ -182,6 +192,7 @@ function Card({ icon, title, description, onClick }: CardProps) {
 ```
 
 **OptionList** - для вертикального списка (как на dirigeant):
+
 ```tsx
 <OptionList>
   <OptionButton {...} />
@@ -204,6 +215,7 @@ function Card({ icon, title, description, onClick }: CardProps) {
 ## Полный пример рефакторинга
 
 ### BEFORE (100+ строк):
+
 ```tsx
 'use client'
 import { useRouter } from 'next/navigation'
@@ -216,9 +228,7 @@ interface TagProps {
 function Tag({ txt }: TagProps) {
   return (
     <div className='flex items-center justify-center rounded-full bg-white/10 px-8 py-2'>
-      <p className="font-['Poppins',sans-serif] text-xs font-bold text-white">
-        {txt}
-      </p>
+      <p className="font-['Poppins',sans-serif] text-xs font-bold text-white">{txt}</p>
     </div>
   )
 }
@@ -232,7 +242,9 @@ interface CardProps {
 
 function Card({ icon, title, description, onClick }: CardProps) {
   return (
-    <button onClick={onClick} className="group relative flex h-[136px] w-full items-center rounded-xl bg-white/8...">
+    <button
+      onClick={onClick}
+      className='group relative flex h-[136px] w-full items-center rounded-xl bg-white/8...'>
       {/* 30+ lines of markup */}
     </button>
   )
@@ -244,10 +256,10 @@ export default function MyPage() {
   return (
     <div className='relative min-h-screen w-full bg-[#0a253a] overflow-x-hidden'>
       {/* Background decorations - 3 divs */}
-      
+
       {/* Back button */}
-      <button onClick={() => router.back()} className="...">
-        <ArrowLeftIcon className="text-white" />
+      <button onClick={() => router.back()} className='...'>
+        <ArrowLeftIcon className='text-white' />
         <p>Retour</p>
       </button>
 
@@ -255,17 +267,27 @@ export default function MyPage() {
       <div className='mx-auto flex min-h-screen w-full max-w-[920px]...'>
         <div className='flex w-full flex-col items-center gap-[62px]'>
           <div className='flex w-full flex-col items-center gap-[22px]'>
-            <Tag txt="Configuration" />
-            <h1 className="...">
+            <Tag txt='Configuration' />
+            <h1 className='...'>
               Mon <span className='text-[#67d29d]'>titre</span>
             </h1>
           </div>
 
-          <p className="...">Description</p>
+          <p className='...'>Description</p>
 
           <div className='grid grid-cols-1 gap-4 lg:grid-cols-2'>
-            <Card icon={<Icon1 />} title="Option 1" description="Desc 1" onClick={() => router.push('/page1')} />
-            <Card icon={<Icon2 />} title="Option 2" description="Desc 2" onClick={() => router.push('/page2')} />
+            <Card
+              icon={<Icon1 />}
+              title='Option 1'
+              description='Desc 1'
+              onClick={() => router.push('/page1')}
+            />
+            <Card
+              icon={<Icon2 />}
+              title='Option 2'
+              description='Desc 2'
+              onClick={() => router.push('/page2')}
+            />
           </div>
         </div>
       </div>
@@ -275,10 +297,19 @@ export default function MyPage() {
 ```
 
 ### AFTER (30-40 строк):
+
 ```tsx
 'use client'
 import { useRouter } from 'next/navigation'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionGrid, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid,
+  OptionButton,
+} from '@/components/ui'
 import { Icon1, Icon2 } from '@/components/Icons'
 
 export default function MyPage() {
@@ -290,22 +321,26 @@ export default function MyPage() {
       <PageContainer>
         <PageSection>
           <PageHeader
-            tag="Configuration"
-            title={<>Mon <span className='text-[#67d29d]'>titre</span></>}
-            description="Description"
+            tag='Configuration'
+            title={
+              <>
+                Mon <span className='text-[#67d29d]'>titre</span>
+              </>
+            }
+            description='Description'
           />
 
           <OptionGrid>
             <OptionButton
               icon={<Icon1 className='text-white/60' />}
-              title="Option 1"
-              description="Desc 1"
+              title='Option 1'
+              description='Desc 1'
               onClick={() => router.push('/page1')}
             />
             <OptionButton
               icon={<Icon2 className='text-white/60' />}
-              title="Option 2"
-              description="Desc 2"
+              title='Option 2'
+              description='Desc 2'
               onClick={() => router.push('/page2')}
             />
           </OptionGrid>
@@ -316,7 +351,8 @@ export default function MyPage() {
 }
 ```
 
-**Результат:** 
+**Результат:**
+
 - ✅ 60-70% меньше кода
 - ✅ Чище и читабельнее
 - ✅ Легче поддерживать
@@ -338,20 +374,24 @@ export default function MyPage() {
 ## Приоритет рефакторинга
 
 ### Высокий (часто используются):
-1. salary-employees/* страницы
-2. legal-form/* страницы  
-3. retraite-indtpt/* страницы
+
+1. salary-employees/\* страницы
+2. legal-form/\* страницы
+3. retraite-indtpt/\* страницы
 
 ### Средний:
-4. other-situations/* страницы
+
+4. other-situations/\* страницы
 5. coverage-type страница
 
 ### Низкий:
+
 6. result страницы (если есть кастомный дизайн)
 
 ## Помощь и вопросы
 
 См. полную документацию в `DESIGN-SYSTEM.md` или примеры в:
+
 - `src/app/page.tsx`
 - `src/app/dirigeant/page.tsx`
 - `src/app/employee-count/page.tsx`

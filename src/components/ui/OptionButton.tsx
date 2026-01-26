@@ -79,7 +79,13 @@ export function OptionButton({
 /**
  * OptionGrid - Сетка для размещения OptionButton
  */
-export function OptionGrid({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+export function OptionGrid({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
   return (
     <div className={`w-full ${className}`}>
       <div className='grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-[35px]'>{children}</div>
@@ -90,7 +96,13 @@ export function OptionGrid({ children, className = '' }: { children: React.React
 /**
  * OptionList - Вертикальный список для OptionButton
  */
-export function OptionList({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+export function OptionList({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
   return (
     <div className={`flex w-full flex-col items-center justify-center ${className}`}>
       <div className='flex w-full max-w-[653px] flex-col items-center gap-3'>{children}</div>

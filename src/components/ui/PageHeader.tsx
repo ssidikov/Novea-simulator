@@ -11,12 +11,7 @@ interface PageHeaderProps {
 /**
  * PageHeader Component - Заголовок страницы с тегом и описанием
  */
-export function PageHeader({
-  tag,
-  title,
-  description,
-  maxWidth = '800px',
-}: PageHeaderProps) {
+export function PageHeader({ tag, title, description, maxWidth = '800px' }: PageHeaderProps) {
   return (
     <div className='flex w-full flex-col items-center gap-10 sm:gap-12 lg:gap-16'>
       {/* Header Section */}

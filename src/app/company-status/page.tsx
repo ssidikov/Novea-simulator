@@ -2,7 +2,14 @@
 import { useRouter } from 'next/navigation'
 import { useFormData, type CompanyStatus } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionGrid } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid,
+} from '@/components/ui'
 import { OptionButton } from '@/components/ui/OptionButton'
 import {
   BuildingIcon,

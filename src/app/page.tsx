@@ -40,7 +40,7 @@ export default function SimulateurStart() {
                 </p>
               </div>
             </div>
-            <h1 className="font-['Poppins',sans-serif] w-full max-w-[800px] whitespace-pre-wrap text-center text-3xl font-extrabold leading-tight text-white sm:text-4xl sm:leading-tight lg:text-6xl lg:leading-tight">
+            <h1 className="font-['Poppins',sans-serif] w-full whitespace-pre-wrap text-center text-3xl font-extrabold leading-tight text-white sm:text-4xl sm:leading-tight lg:text-5xl lg:leading-tight">
               {`Quelle est votre `}
               <span className='text-[#67d29d]'>situation</span>
               {` ?`}

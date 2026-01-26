@@ -2,7 +2,15 @@
 import { useRouter } from 'next/navigation'
 import { useFormData, type CoverageType } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionList, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionList,
+  OptionButton,
+} from '@/components/ui'
 import { UsersIcon, UserSingleIcon, UserGroupIcon } from '@/components/Icons'
 
 export default function CoverageTypePage() {

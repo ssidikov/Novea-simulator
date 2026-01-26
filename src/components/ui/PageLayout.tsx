@@ -38,7 +38,13 @@ export function PageContainer({ children }: { children: React.ReactNode }) {
 /**
  * PageSection - Секция контента
  */
-export function PageSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+export function PageSection({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
   return (
     <div className={`flex w-full flex-col items-center gap-10 sm:gap-12 lg:gap-16 ${className}`}>
       {children}

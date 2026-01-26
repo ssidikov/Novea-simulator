@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation'
 import { useFormData, type EmployeeCount } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionList, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionList,
+  OptionButton,
+} from '@/components/ui'
 import { UsersIcon } from '@/components/Icons'
 
 export default function SalaryEmployeesCountPage() {
@@ -28,7 +36,8 @@ export default function SalaryEmployeesCountPage() {
             tag='Configuration'
             title={
               <>
-                Combien de <span className='text-[#67d29d]'>salariés</span> compte votre entreprise ?
+                Combien de <span className='text-[#67d29d]'>salariés</span> compte votre entreprise
+                ?
               </>
             }
             description='Vous pouvez inclure les temps partiels, apprentis et CDD mais pas les stagiaires.'

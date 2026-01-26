@@ -1,6 +1,7 @@
 # Novea Simulateur - Project Setup
 
 ## Project Details
+
 - **Type**: Next.js App Router with TypeScript
 - **Styling**: TailwindCSS
 - **Purpose**: Health insurance (mutuelle) simulator
@@ -8,6 +9,7 @@
 - **Status**: ✅ Production ready
 
 ## Project Structure
+
 ```
 src/
 ├── app/                   # Pages (App Router)
@@ -29,6 +31,7 @@ src/
 ```
 
 ## Key Features
+
 - ✅ Multi-step form with dynamic routing
 - ✅ Context API for state management
 - ✅ Responsive design (mobile, tablet, desktop)
@@ -38,6 +41,7 @@ src/
 - ✅ Tailwind CSS 4 for styling
 
 ## Development
+
 ```bash
 npm run dev   # Start dev server
 npm run build # Build for production

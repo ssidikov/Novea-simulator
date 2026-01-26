@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation'
 import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionGrid, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid,
+  OptionButton,
+} from '@/components/ui'
 import { UsersIcon } from '@/components/Icons'
 
 export default function ConventionCollectivePage() {

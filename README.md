@@ -12,11 +12,13 @@ A modern health insurance (mutuelle) simulator built with Next.js, TypeScript, a
 ### Installation
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -51,6 +53,7 @@ src/
 ## 🎨 Design
 
 The simulator follows the Figma design specifications with:
+
 - Dark blue primary theme (#0a253a)
 - Gradient background effects
 - Custom fonts: Poppins and DM Sans

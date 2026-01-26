@@ -7,10 +7,10 @@
 export const colors = {
   // Primary colors
   primary: {
-    dark: '#0a253a',      // Background
-    green: '#67d39d',     // Accent green
-    purple: '#715aff',    // Accent purple
-    blue: '#55c1ff',      // Accent blue
+    dark: '#0a253a', // Background
+    green: '#67d39d', // Accent green
+    purple: '#715aff', // Accent purple
+    blue: '#55c1ff', // Accent blue
   },
 
   // White variations
@@ -64,7 +64,7 @@ export const typography = {
     primary: "'Poppins', sans-serif",
     secondary: "'DM Sans', sans-serif",
   },
-  
+
   fontSize: {
     xs: '12px',
     sm: '14px',
@@ -77,7 +77,7 @@ export const typography = {
     '5xl': '48px',
     '6xl': '56px',
   },
-  
+
   fontWeight: {
     normal: 400,
     medium: 500,
@@ -85,7 +85,7 @@ export const typography = {
     bold: 700,
     extrabold: 800,
   },
-  
+
   lineHeight: {
     tight: '1.2',
     normal: '1.5',
@@ -133,7 +133,7 @@ export const layout = {
     narrow: '606px',
     description: '489px',
   },
-  
+
   padding: {
     page: {
       mobile: '16px',
@@ -141,7 +141,7 @@ export const layout = {
       desktop: '67px',
     },
   },
-  
+
   gap: {
     section: '62px',
     subsection: '22px',
@@ -158,7 +158,7 @@ export const animation = {
       to: 1,
     },
   },
-  
+
   blur: {
     amount: '57.069px',
   },
@@ -173,7 +173,7 @@ export const componentSizes = {
       y: '9px',
     },
   },
-  
+
   button: {
     height: {
       sm: '40px',
@@ -186,7 +186,7 @@ export const componentSizes = {
       lg: { x: '32px', y: '16px' },
     },
   },
-  
+
   card: {
     height: '136px',
     padding: {
@@ -194,14 +194,14 @@ export const componentSizes = {
       y: '15px',
     },
   },
-  
+
   icon: {
     sm: '20px',
     md: '24px',
     lg: '40px',
     xl: '48px',
   },
-  
+
   iconContainer: {
     sm: '40px',
     md: '48px',

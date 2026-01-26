@@ -14,7 +14,7 @@ export function Tag({ children, className = '' }: TagProps) {
     <div
       className={`flex shrink-0 items-center justify-center rounded-full bg-white/10 px-8 py-2 ${className}`}>
       <p
-        className="text-center text-xs font-bold leading-tight text-white"
+        className='text-center text-xs font-bold leading-tight text-white'
         style={{ fontFamily: typography.fonts.primary }}>
         {children}
       </p>

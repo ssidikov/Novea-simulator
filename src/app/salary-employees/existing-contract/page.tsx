@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation'
 import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionGrid, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid,
+  OptionButton,
+} from '@/components/ui'
 import { CheckIcon, CloseIcon } from '@/components/Icons'
 
 function QuestionIcon() {
@@ -43,7 +51,8 @@ export default function ExistingContractPage() {
             tag='Configuration'
             title={
               <>
-                Avez-vous déjà un <span className='text-[#67d29d]'>contrat de mutuelle santé</span> ?
+                Avez-vous déjà un <span className='text-[#67d29d]'>contrat de mutuelle santé</span>{' '}
+                ?
               </>
             }
             description='Cette information nous permet de vous proposer la solution la plus adaptée à votre situation actuelle.'

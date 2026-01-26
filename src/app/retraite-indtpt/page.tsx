@@ -1,7 +1,15 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { PageLayout, PageContainer, PageSection, PageHeader, BackButton, OptionGrid, OptionButton } from '@/components/ui'
+import {
+  PageLayout,
+  PageContainer,
+  PageSection,
+  PageHeader,
+  BackButton,
+  OptionGrid,
+  OptionButton,
+} from '@/components/ui'
 import { CheckIcon, CloseIcon } from '@/components/Icons'
 
 export default function RetraiteIndtptPage() {
