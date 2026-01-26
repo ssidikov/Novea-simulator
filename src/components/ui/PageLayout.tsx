@@ -29,7 +29,7 @@ export function PageLayout({ children, showBackButton, onBack }: PageLayoutProps
  */
 export function PageContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className='mx-auto flex min-h-screen w-full max-w-[920px] flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
+    <div className='mx-auto flex min-h-screen w-full max-w-[920px] lg:max-w-7xl flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
       {children}
     </div>
   )

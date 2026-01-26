@@ -142,7 +142,7 @@ export default function RemunerationPage() {
       </button>
 
       {/* Main content */}
-      <div className='mx-auto flex min-h-screen w-full max-w-[920px] flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
+      <div className='mx-auto flex min-h-screen w-full max-w-[920px] lg:max-w-7xl flex-col items-center justify-center px-4 py-20 sm:px-8 lg:py-[149px]'>
         <div className='flex w-full flex-col items-center gap-10 sm:gap-12 lg:gap-[62px]'>
           {/* Header section */}
           <div className='flex w-full flex-col items-center gap-5 sm:gap-[22px]'>
