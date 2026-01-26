@@ -12,7 +12,7 @@ import {
   OptionList,
   OptionButton,
 } from '@/components/ui'
-import { UsersIcon } from '@/components/Icons'
+import { UsersGroupMultipleIcon } from '@/components/Icons'
 
 export default function SalaryEmployeesCountPage() {
   const router = useRouter()
@@ -46,21 +46,21 @@ export default function SalaryEmployeesCountPage() {
 
           <OptionList>
             <OptionButton
-              icon={<UsersIcon className='text-white/60' />}
+              icon={<UsersGroupMultipleIcon className='h-6 w-6 text-white/60' />}
               title='1 à 5'
               description='Très petite entreprise'
               onClick={() => handleSelect('1-5')}
               variant='hover-white'
             />
             <OptionButton
-              icon={<UsersIcon className='text-white/60' />}
+              icon={<UsersGroupMultipleIcon className='h-6 w-6 text-white/60' />}
               title='6 à 100'
               description='Petite et moyenne entreprise'
               onClick={() => handleSelect('6-100')}
               variant='hover-white'
             />
             <OptionButton
-              icon={<UsersIcon className='text-white/60' />}
+              icon={<UsersGroupMultipleIcon className='h-6 w-6 text-white/60' />}
               title='Plus de 100'
               description='Grande entreprise'
               onClick={() => handleSelect('100+')}

@@ -31,23 +31,20 @@ export default function OptionCard({ icon, title, description, onClick }: Option
           </p>
         </div>
       </div>
-      <div className='absolute right-4 top-1/2 -translate-y-1/2 sm:right-[21px]'>
-        <div className='h-5 w-5 opacity-30 transition-all group-hover:opacity-100 sm:h-6 sm:w-6'>
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            className='text-white transition-colors group-hover:text-[#0a253a]'>
-            <path
-              d='M5 12L10 17L19 8'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </div>
+      <div className='absolute right-4 bottom-0 -translate-y-1/2 sm:right-[21px]'>
+        <svg
+          className='h-5 w-5 opacity-30 text-white transition-all group-hover:opacity-100 group-hover:text-[#67D39D] sm:h-6 sm:w-6'
+          viewBox='0 0 24 24'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'>
+          <path
+            d='M5 12H19M19 12L12 5M19 12L12 19'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
       </div>
     </button>
   )

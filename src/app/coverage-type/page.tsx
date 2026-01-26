@@ -11,7 +11,7 @@ import {
   OptionList,
   OptionButton,
 } from '@/components/ui'
-import { UsersIcon, UserSingleIcon, UserGroupIcon } from '@/components/Icons'
+import { UsersGroupIcon, UserSingleIcon, UserGroupIcon } from '@/components/Icons'
 
 export default function CoverageTypePage() {
   const router = useRouter()
@@ -43,21 +43,21 @@ export default function CoverageTypePage() {
 
           <OptionList>
             <OptionButton
-              icon={<UsersIcon className='text-white/60' />}
+              icon={<UsersGroupIcon className='h-6 w-6 text-white/60' />}
               title='Salariés'
               description='Couverture santé collective pour vos collaborateurs'
               onClick={() => handleCoverageSelect('salarie-seulement')}
               variant='hover-white'
             />
             <OptionButton
-              icon={<UserSingleIcon className='text-white/60' />}
+              icon={<UserSingleIcon className='h-6 w-6 text-white/60' />}
               title='Dirigeant seulement'
               description='Protection santé individuelle pour le dirigeant'
               onClick={() => handleCoverageSelect('dirigeant-seulement')}
               variant='hover-white'
             />
             <OptionButton
-              icon={<UserGroupIcon className='text-white/60' />}
+              icon={<UserGroupIcon className='h-6 w-6 text-white/60' />}
               title='Dirigeant et salarié'
               description='Couverture complète dirigeant + collaborateurs'
               onClick={() => handleCoverageSelect('dirigeant-salarie')}
