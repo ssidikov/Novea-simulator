@@ -6,11 +6,11 @@ import { PageLayout, PageContainer, PageSection, OptionGrid } from '@/components
 import { OptionButton } from '@/components/ui/OptionButton'
 import {
   BriefcaseIcon,
-  UsersIcon,
-  BuildingIcon,
+  UsersMultipleIcon,
+  ClipboardIcon,
   HeartIcon,
-  PersonIcon,
-  UserGroupIcon,
+  BuildingIcon,
+  GraduationCapIcon,
 } from '@/components/Icons'
 
 export default function SimulateurStart() {
@@ -50,42 +50,42 @@ export default function SimulateurStart() {
           {/* Options Grid */}
           <OptionGrid>
             <OptionButton
-              icon={<BriefcaseIcon className='text-white/60' />}
+              icon={<BriefcaseIcon className='h-6 w-6 text-white/60' />}
               title='Fondateur, Dirigeant'
               description="Contrats spécifiques pour chefs d'entreprise"
               onClick={() => handleSituationSelect('dirigeant')}
             />
 
             <OptionButton
-              icon={<UsersIcon className='text-white/60' />}
+              icon={<UsersMultipleIcon className='h-6 w-6 text-white/60' />}
               title='Indépendant, travailleur non salarié'
               description='Protection adaptée aux TNS'
               onClick={() => handleSituationSelect('indtpt')}
             />
 
             <OptionButton
-              icon={<BuildingIcon className='text-white/60' />}
+              icon={<ClipboardIcon className='h-6 w-6 text-white/60' />}
               title='RH, comptable, expert comptable, etc'
               description='Solutions pour professionnels'
               onClick={() => handleSituationSelect('rh')}
             />
 
             <OptionButton
-              icon={<HeartIcon className='text-white/60' />}
+              icon={<HeartIcon className='h-6 w-6 text-white/60' />}
               title='Retraité'
               description='Couverture santé senior'
               onClick={() => handleSituationSelect('retraite')}
             />
 
             <OptionButton
-              icon={<PersonIcon className='text-white/60' />}
+              icon={<GraduationCapIcon className='h-6 w-6 text-white/60' />}
               title='Particulier, Étudiants, etc'
               description='Formules individuelles flexibles'
               onClick={() => handleSituationSelect('parti')}
             />
 
             <OptionButton
-              icon={<UserGroupIcon className='text-white/60' />}
+              icon={<BuildingIcon className='h-6 w-6 text-white/60' />}
               title="Salarié d'une entreprise qui a rejoint la mutuelle Novéa"
               description='Contrats collectifs entreprise'
               onClick={() => handleSituationSelect('salarie-entr')}

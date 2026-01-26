@@ -19,8 +19,110 @@ export function Icon({ name, className = '', width = 24, height = 24 }: IconProp
   )
 }
 
+// Main page icons - Situation selection
 export const BriefcaseIcon = ({ className }: { className?: string }) => (
-  <Icon name='briefcase' className={className} width={20} height={20} />
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M2 10C2 8.89543 2.89543 8 4 8H20C21.1046 8 22 8.89543 22 10V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V10Z'
+      stroke='currentColor'
+      strokeWidth='2'
+      opacity='0.6'
+    />
+    <path
+      d='M8 8V6C8 4.89543 8.89543 4 10 4H14C15.1046 4 16 4.89543 16 6V8'
+      stroke='currentColor'
+      strokeWidth='2'
+      opacity='0.6'
+    />
+  </svg>
+)
+
+export const UsersMultipleIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z'
+      stroke='currentColor'
+      strokeWidth='2'
+      opacity='0.6'
+    />
+    <path
+      d='M3 21V19C3 16.2386 5.23858 14 8 14H10C12.7614 14 15 16.2386 15 19V21'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      opacity='0.6'
+    />
+    <circle cx='17' cy='7' r='3' stroke='currentColor' strokeWidth='2' opacity='0.6' />
+    <path
+      d='M17 13C18.5 13.5 21 15 21 18V21'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      opacity='0.6'
+    />
+  </svg>
+)
+
+export const ClipboardIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <rect
+      x='4'
+      y='5'
+      width='16'
+      height='16'
+      rx='2'
+      stroke='currentColor'
+      strokeWidth='2'
+      opacity='0.6'
+    />
+    <path d='M8 10H16M8 14H16M8 18H12' stroke='currentColor' strokeWidth='2' opacity='0.6' />
+  </svg>
+)
+
+export const HeartIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M12 21L3.5 12.5C1.5 10.5 1.5 7.5 3.5 5.5C5.5 3.5 8.5 3.5 10.5 5.5L12 7L13.5 5.5C15.5 3.5 18.5 3.5 20.5 5.5C22.5 7.5 22.5 10.5 20.5 12.5L12 21Z'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      opacity='0.6'
+    />
+  </svg>
+)
+
+export const BuildingIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M3 21H21M6 21V9L12 3L18 9V21M9 12H11M9 16H11M13 12H15M13 16H15'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      opacity='0.6'
+    />
+  </svg>
+)
+
+export const GraduationCapIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      d='M2 9L12 4L22 9L12 14L2 9Z'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      opacity='0.6'
+    />
+    <path
+      d='M6 10.5V15.5C6 16.5 8.5 19 12 19C15.5 19 18 16.5 18 15.5V10.5'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      opacity='0.6'
+    />
+  </svg>
 )
 
 export const UsersIcon = ({ className }: { className?: string }) => (
@@ -33,14 +135,6 @@ export const UserSingleIcon = ({ className }: { className?: string }) => (
 
 export const UserGroupIcon = ({ className }: { className?: string }) => (
   <Icon name='user-group' className={className} width={20} height={20} />
-)
-
-export const BuildingIcon = ({ className }: { className?: string }) => (
-  <Icon name='building' className={className} width={20} height={20} />
-)
-
-export const HeartIcon = ({ className }: { className?: string }) => (
-  <Icon name='heart' className={className} width={20} height={20} />
 )
 
 export const PersonIcon = ({ className }: { className?: string }) => (
