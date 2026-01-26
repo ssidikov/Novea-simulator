@@ -1,26 +1,45 @@
 # Novea Simulateur - Project Setup
 
-- [x] Verify that the copilot-instructions.md file in the .github directory is created.
-- [x] Clarify Project Requirements
-- [x] Scaffold the Project
-- [x] Customize the Project
-- [x] Install Required Extensions (None required)
-- [x] Compile the Project
-- [x] Create and Run Task
-- [x] Launch the Project
-- [x] Ensure Documentation is Complete
-
 ## Project Details
 - **Type**: Next.js App Router with TypeScript
 - **Styling**: TailwindCSS
 - **Purpose**: Health insurance (mutuelle) simulator
-- **Pages**: Multi-step form leading to "Votre Offre" page
-- **Status**: ✅ Development server running at http://localhost:3000
+- **Pages**: Multi-step form with dynamic navigation flow
+- **Status**: ✅ Production ready
 
-## Completed Features
-1. ✅ First page: "Quelle est votre situation?" with 6 situation options
-2. ✅ Second page: "Qui souhaitez-vous couvrir?" with 3 coverage options (for dirigeant)
-3. ✅ Navigation between pages with back button
-4. ✅ Responsive design with mobile breakpoints
-5. ✅ Custom fonts (Poppins, DM Sans) integrated
-6. ✅ Figma design implementation with exact colors and styling
+## Project Structure
+```
+src/
+├── app/                   # Pages (App Router)
+│   ├── company-status/   # Statut de l'entreprise
+│   ├── coverage-type/    # Type de couverture
+│   ├── dirigeant/        # Parcours dirigeant
+│   ├── employee-count/   # Nombre d'employés
+│   ├── legal-form/       # Formulaires juridiques
+│   ├── retraite-indtpt/  # Parcours retraité
+│   ├── salary-employees/ # Parcours salariés
+│   └── other-situations/ # Autres situations
+├── components/           # Reusable components
+│   ├── Icons.tsx        # Icon components
+│   └── OptionCard.tsx   # Standard option card
+├── contexts/            # React contexts
+│   └── FormContext.tsx  # Global form state
+└── utils/               # Utilities
+    └── navigationFlow.ts # Navigation logic
+```
+
+## Key Features
+- ✅ Multi-step form with dynamic routing
+- ✅ Context API for state management
+- ✅ Responsive design (mobile, tablet, desktop)
+- ✅ Custom fonts (Poppins, DM Sans)
+- ✅ Reusable, optimized components
+- ✅ TypeScript for type safety
+- ✅ Tailwind CSS 4 for styling
+
+## Development
+```bash
+npm run dev   # Start dev server
+npm run build # Build for production
+npm start     # Start production server
+```

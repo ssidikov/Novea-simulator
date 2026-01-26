@@ -27,12 +27,25 @@ npm run dev
 
 ```
 src/
-├── app/
-│   ├── layout.tsx        # Root layout with fonts
-│   ├── page.tsx          # Main page: "Quelle est votre situation?"
-│   ├── dirigeant/
-│   │   └── page.tsx      # Dirigeant coverage options
-│   └── globals.css       # Global styles and Tailwind imports
+├── app/                   # Pages de l'application (App Router)
+│   ├── layout.tsx        # Root layout avec fonts
+│   ├── page.tsx          # Page principale
+│   ├── company-status/   # Statut de l'entreprise
+│   ├── coverage-type/    # Type de couverture
+│   ├── dirigeant/        # Parcours dirigeant
+│   ├── employee-count/   # Nombre d'employés
+│   ├── legal-form/       # Formulaires juridiques
+│   ├── retraite-indtpt/  # Parcours retraité/indépendant
+│   ├── salary-employees/ # Parcours salariés
+│   ├── other-situations/ # Autres situations
+│   └── globals.css       # Styles globaux et Tailwind
+├── components/           # Composants réutilisables
+│   ├── Icons.tsx        # Composants d'icônes
+│   └── OptionCard.tsx   # Carte d'option standard
+├── contexts/            # Contextes React
+│   └── FormContext.tsx  # État global du formulaire
+└── utils/               # Utilitaires
+    └── navigationFlow.ts # Logique de navigation
 ```
 
 ## 🎨 Design

@@ -4,18 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
-
-// Icon components
-function CalendarIcon() {
-  return (
-    <svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <rect x='6' y='8' width='28' height='26' rx='2' stroke='white' strokeWidth='2' />
-      <path d='M6 14H34' stroke='white' strokeWidth='2' />
-      <path d='M13 5V11' stroke='white' strokeWidth='2' strokeLinecap='round' />
-      <path d='M27 5V11' stroke='white' strokeWidth='2' strokeLinecap='round' />
-    </svg>
-  )
-}
+import { CalendarIcon, UserIcon } from '@/components/Icons'
 
 function PhoneIcon() {
   return (
@@ -63,20 +52,6 @@ function UsersIcon() {
       />
       <circle cx='14' cy='6' r='2' stroke='white' strokeWidth='1.5' opacity='0.4' />
       <path d='M15 11C16.7 11.5 18 13.1 18 15' stroke='white' strokeWidth='1.5' opacity='0.4' />
-    </svg>
-  )
-}
-
-function UserIcon() {
-  return (
-    <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
-      <circle cx='10' cy='7' r='3' stroke='white' strokeWidth='1.5' opacity='0.4' />
-      <path
-        d='M4 17C4 13.7 6.7 11 10 11C13.3 11 16 13.7 16 17'
-        stroke='white'
-        strokeWidth='1.5'
-        opacity='0.4'
-      />
     </svg>
   )
 }
@@ -198,7 +173,7 @@ export default function VeryLargePage() {
 
           {/* Icon */}
           <div className='flex h-[80px] w-[80px] items-center justify-center rounded-full bg-gradient-to-b from-[#715aff] to-[#67d39d]'>
-            <CalendarIcon />
+            <CalendarIcon className='w-10 h-10 text-white' />
           </div>
 
           {/* Title */}
@@ -262,7 +237,7 @@ export default function VeryLargePage() {
             {/* Full name */}
             <div className='relative h-[60px] w-full'>
               <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <UserIcon />
+                <UserIcon className='w-5 h-5 text-white/40' />
               </div>
               <input
                 type='text'
