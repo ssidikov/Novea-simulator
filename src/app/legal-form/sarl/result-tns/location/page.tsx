@@ -4,16 +4,29 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { MapPinIcon } from '@/components/Icons'
 import { useFormData } from '@/contexts/FormContext'
+import { sanitizeInput, validateRequired } from '@/utils/validation'
 
 export default function LocationPage() {
   const router = useRouter()
   const { updateFormData } = useFormData()
   const [location, setLocation] = useState('')
+  const [error, setError] = useState('')
+
+  const handleInputChange = (value: string) => {
+    const sanitized = sanitizeInput(value)
+    setLocation(sanitized)
+    if (error) setError('')
+  }
 
   const handleContinue = () => {
-    // Save location to form data
+    const result = validateRequired(location, 'Ville ou code postal')
+    if (!result.isValid) {
+      setError(result.error || '')
+      return
+    }
+    // Save sanitized location to form data
     updateFormData({
-      location: location,
+      location: sanitizeInput(location),
     })
 
     // Navigate to existing contract question
@@ -83,9 +96,9 @@ export default function LocationPage() {
                 <input
                   type='text'
                   value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e) => handleInputChange(e.target.value)}
                   placeholder='Ex: Paris, Lyon, 75001...'
-                  className='w-full h-14 bg-white/5 border-2 border-[#52bcf8]/77 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#55c1ff] transition-colors'
+                  className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#55c1ff] transition-colors ${error ? 'border-red-500' : 'border-[#52bcf8]/77'}`}
                 />
                 <div className='absolute right-5 top-1/2 -translate-y-1/2'>
                   <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>
@@ -104,6 +117,7 @@ export default function LocationPage() {
                   </svg>
                 </div>
               </div>
+              {error && <p className='mt-1 text-xs text-red-400'>{error}</p>}
             </div>
 
             {/* Info box */}

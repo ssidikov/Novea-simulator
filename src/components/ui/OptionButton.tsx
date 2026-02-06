@@ -31,7 +31,7 @@ export function OptionButton({
   return (
     <button
       onClick={onClick}
-      className={`group relative flex h-[136px] w-full items-center rounded-xl bg-white/8 px-6 py-4 transition-all duration-300 hover:scale-[1.02] sm:px-8 lg:px-[35px] ${variantClasses[variant]} ${className}`}>
+      className={`group relative flex h-[136px] w-full cursor-pointer items-center rounded-xl bg-white/8 px-6 py-4 transition-all duration-300 hover:scale-[1.02] sm:px-8 lg:px-[35px] ${variantClasses[variant]} ${className}`}>
       <div className='flex items-center gap-4 sm:gap-5'>
         {/* Icon Container */}
         <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-[#715aff] sm:h-12 sm:w-12'>

@@ -3,13 +3,40 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { CalendarIcon } from '@/components/Icons'
+import { sanitizeInput, validateAge } from '@/utils/validation'
 
 export default function BirthDatePage() {
   const router = useRouter()
   const [userAge, setUserAge] = useState('')
   const [partnerAge, setPartnerAge] = useState('')
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const handleAgeChange = (field: string, value: string, setter: (v: string) => void) => {
+    // Only allow digits
+    const sanitized = value.replace(/\D/g, '')
+    setter(sanitized)
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }))
+    }
+  }
+
+  const validateAgeField = (field: string, value: string) => {
+    if (!value) return true // Empty is OK for validation on blur
+    const result = validateAge(value)
+    setErrors((prev) => ({ ...prev, [field]: result.isValid ? '' : result.error || '' }))
+    return result.isValid
+  }
 
   const handleContinue = () => {
+    const isUserAgeValid = validateAge(userAge)
+    if (!isUserAgeValid.isValid) {
+      setErrors((prev) => ({ ...prev, userAge: isUserAgeValid.error || '' }))
+      return
+    }
+    if (partnerAge && !validateAge(partnerAge).isValid) {
+      setErrors((prev) => ({ ...prev, partnerAge: 'Âge invalide' }))
+      return
+    }
     // TODO: Update form context with ages
     router.push('/retraite-indtpt/age')
   }
@@ -80,14 +107,16 @@ export default function BirthDatePage() {
                   <input
                     type='number'
                     value={userAge}
-                    onChange={(e) => setUserAge(e.target.value)}
+                    onChange={(e) => handleAgeChange('userAge', e.target.value, setUserAge)}
+                    onBlur={() => validateAgeField('userAge', userAge)}
                     placeholder='Votre âge'
-                    className='w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors'
+                    className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors ${errors.userAge ? 'border-red-500' : 'border-white/10'}`}
                   />
                   <span className='absolute right-5 top-4 text-white opacity-60 text-base font-medium'>
                     ans
                   </span>
                 </div>
+                {errors.userAge && <p className='text-xs text-red-400 -mt-4'>{errors.userAge}</p>}
               </div>
 
               {/* Partner age */}
@@ -102,14 +131,18 @@ export default function BirthDatePage() {
                   <input
                     type='number'
                     value={partnerAge}
-                    onChange={(e) => setPartnerAge(e.target.value)}
+                    onChange={(e) => handleAgeChange('partnerAge', e.target.value, setPartnerAge)}
+                    onBlur={() => validateAgeField('partnerAge', partnerAge)}
                     placeholder='Âge de votre partenaire'
-                    className='w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors'
+                    className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#67d39d] transition-colors ${errors.partnerAge ? 'border-red-500' : 'border-white/10'}`}
                   />
                   <span className='absolute right-5 top-4 text-white opacity-60 text-base font-medium'>
                     ans
                   </span>
                 </div>
+                {errors.partnerAge && (
+                  <p className='text-xs text-red-400 -mt-4'>{errors.partnerAge}</p>
+                )}
               </div>
             </div>
 

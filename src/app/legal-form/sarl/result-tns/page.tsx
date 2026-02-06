@@ -4,18 +4,44 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CalendarIcon } from '@/components/Icons'
 import { useFormData } from '@/contexts/FormContext'
+import { validateAge, sanitizeInput } from '@/utils/validation'
 
 export default function SarlResultTnsPage() {
   const router = useRouter()
   const { updateFormData } = useFormData()
   const [userAge, setUserAge] = useState('')
   const [partnerAge, setPartnerAge] = useState('')
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const handleAgeChange = (field: string, value: string, setter: (v: string) => void) => {
+    const sanitized = value.replace(/\D/g, '')
+    setter(sanitized)
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }))
+    }
+  }
+
+  const validateAgeField = (field: string, value: string) => {
+    if (!value) return true
+    const result = validateAge(value)
+    setErrors((prev) => ({ ...prev, [field]: result.isValid ? '' : result.error || '' }))
+    return result.isValid
+  }
 
   const handleContinue = () => {
-    // Save ages to form data
+    const isUserAgeValid = validateAge(userAge)
+    if (!isUserAgeValid.isValid) {
+      setErrors((prev) => ({ ...prev, userAge: isUserAgeValid.error || '' }))
+      return
+    }
+    if (partnerAge && !validateAge(partnerAge).isValid) {
+      setErrors((prev) => ({ ...prev, partnerAge: 'Âge invalide' }))
+      return
+    }
+    // Save sanitized ages to form data
     updateFormData({
-      userAge: userAge,
-      partnerAge: partnerAge,
+      userAge: sanitizeInput(userAge),
+      partnerAge: sanitizeInput(partnerAge),
     })
 
     // Navigate to location page
@@ -85,14 +111,16 @@ export default function SarlResultTnsPage() {
                   <input
                     type='number'
                     value={userAge}
-                    onChange={(e) => setUserAge(e.target.value)}
+                    onChange={(e) => handleAgeChange('userAge', e.target.value, setUserAge)}
+                    onBlur={() => validateAgeField('userAge', userAge)}
                     placeholder='Votre âge'
-                    className='w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#67d39d] transition-colors'
+                    className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#67d39d] transition-colors ${errors.userAge ? 'border-red-500' : 'border-white/10'}`}
                   />
                   <span className='absolute right-5 top-1/2 -translate-y-1/2 text-white/60 text-base font-medium'>
                     ans
                   </span>
                 </div>
+                {errors.userAge && <p className='text-xs text-red-400 -mt-4'>{errors.userAge}</p>}
               </div>
 
               {/* Partner age (optional) */}
@@ -105,14 +133,18 @@ export default function SarlResultTnsPage() {
                   <input
                     type='number'
                     value={partnerAge}
-                    onChange={(e) => setPartnerAge(e.target.value)}
+                    onChange={(e) => handleAgeChange('partnerAge', e.target.value, setPartnerAge)}
+                    onBlur={() => validateAgeField('partnerAge', partnerAge)}
                     placeholder='Âge de votre partenaire'
-                    className='w-full h-14 bg-white/5 border-2 border-white/10 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#67d39d] transition-colors'
+                    className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white text-base placeholder:text-white/50 focus:outline-none focus:border-[#67d39d] transition-colors ${errors.partnerAge ? 'border-red-500' : 'border-white/10'}`}
                   />
                   <span className='absolute right-5 top-1/2 -translate-y-1/2 text-white/60 text-base font-medium'>
                     ans
                   </span>
                 </div>
+                {errors.partnerAge && (
+                  <p className='text-xs text-red-400 -mt-4'>{errors.partnerAge}</p>
+                )}
               </div>
             </div>
 

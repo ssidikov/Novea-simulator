@@ -5,6 +5,7 @@ import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
 import { ArrowLeftIcon } from '@/components/Icons'
 import { useState } from 'react'
+import { sanitizeInput } from '@/utils/validation'
 
 interface TagProps {
   txt: string
@@ -28,10 +29,16 @@ export default function LargeCompanyPage() {
   // Проверка: если введено 9 или 14 цифр (SIREN или SIRET)
   const isValidSirenOrSiret = /^\d{9}$|^\d{14}$/.test(companyName.trim())
 
+  const handleInputChange = (value: string) => {
+    // Sanitize input but only allow digits for SIREN/SIRET
+    const sanitized = sanitizeInput(value).replace(/\D/g, '')
+    setCompanyName(sanitized)
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (isValidSirenOrSiret) {
-      updateFormData({ companyName: companyName.trim() })
+      updateFormData({ companyName: sanitizeInput(companyName.trim()) })
       const nextRoute = getNextRoute('/salary-employees/large-company', {
         ...formData,
         companyName: companyName.trim(),
@@ -123,7 +130,7 @@ export default function LargeCompanyPage() {
               <input
                 type='text'
                 value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
+                onChange={(e) => handleInputChange(e.target.value)}
                 placeholder='Nom, SIREN ou SIRET'
                 className="font-['Poppins',sans-serif] h-[60px] w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)] placeholder:text-white focus:outline-none focus:ring-2 focus:ring-[#67d29d] sm:h-[70px] sm:pl-[60px] sm:pr-6 sm:text-lg"
               />

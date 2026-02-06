@@ -3,13 +3,26 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { MapPinIcon } from '@/components/Icons'
+import { sanitizeInput, validateRequired } from '@/utils/validation'
 
 export default function AgePage() {
   const router = useRouter()
   const [location, setLocation] = useState('')
+  const [error, setError] = useState('')
+
+  const handleInputChange = (value: string) => {
+    const sanitized = sanitizeInput(value)
+    setLocation(sanitized)
+    if (error) setError('')
+  }
 
   const handleContinue = () => {
-    // TODO: Update form context with location
+    const result = validateRequired(location, 'Ville ou code postal')
+    if (!result.isValid) {
+      setError(result.error || '')
+      return
+    }
+    // TODO: Update form context with sanitized location
     router.push('/salary-employees/existing-contract')
   }
 
@@ -79,14 +92,15 @@ export default function AgePage() {
                 <input
                   type='text'
                   value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e) => handleInputChange(e.target.value)}
                   placeholder='Ex: Paris, Lyon, 75001...'
-                  className='w-full h-14 bg-white/5 border-2 border-[#52bcf8]/77 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#55c1ff] transition-colors'
+                  className={`w-full h-14 bg-white/5 border-2 rounded-lg px-5 py-[14px] text-white placeholder-white/50 focus:outline-none focus:border-[#55c1ff] transition-colors ${error ? 'border-red-500' : 'border-[#52bcf8]/77'}`}
                 />
                 <div className='absolute right-5 top-[18px] w-5 h-5'>
                   <MapPinIcon className='w-5 h-5 text-white/50' />
                 </div>
               </div>
+              {error && <p className='mt-1 text-xs text-red-400'>{error}</p>}
             </div>
 
             {/* Info box */}

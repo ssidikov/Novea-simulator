@@ -111,6 +111,16 @@ function BackIcon() {
   )
 }
 
+import {
+  validatePhone,
+  validateEmail,
+  validateName,
+  validateCompanyName,
+  validatePositiveInteger,
+  validateRequired,
+  sanitizeInput,
+} from '@/utils/validation'
+
 export default function VeryLargePage() {
   const router = useRouter()
   const { updateFormData, formData } = useFormData()
@@ -121,20 +131,89 @@ export default function VeryLargePage() {
   const [email, setEmail] = useState('')
   const [sector, setSector] = useState('')
 
+  // Validation error states
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const validateField = (field: string, value: string) => {
+    let result
+    switch (field) {
+      case 'phone':
+        result = validatePhone(value)
+        break
+      case 'email':
+        result = validateEmail(value)
+        break
+      case 'fullName':
+        result = validateName(value)
+        break
+      case 'companyName':
+        result = validateCompanyName(value)
+        break
+      case 'employeeCount':
+        result = validatePositiveInteger(value)
+        break
+      case 'sector':
+        result = validateRequired(value, 'Secteur')
+        break
+      default:
+        result = { isValid: true }
+    }
+    setErrors((prev) => ({
+      ...prev,
+      [field]: result.isValid ? '' : result.error || '',
+    }))
+    return result.isValid
+  }
+
+  const handleInputChange = (field: string, value: string, setter: (v: string) => void) => {
+    const sanitized = sanitizeInput(value)
+    setter(sanitized)
+    // Clear error on change
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }))
+    }
+  }
+
+  const handleBlur = (field: string, value: string) => {
+    if (value) {
+      validateField(field, value)
+    }
+  }
+
   const handleBack = () => {
     router.back()
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Store appointment data
+
+    // Validate all fields
+    const isPhoneValid = validateField('phone', phone)
+    const isEmailValid = validateField('email', email)
+    const isNameValid = validateField('fullName', fullName)
+    const isCompanyValid = validateField('companyName', companyName)
+    const isCountValid = validateField('employeeCount', employeeCount)
+    const isSectorValid = validateField('sector', sector)
+
+    if (
+      !isPhoneValid ||
+      !isEmailValid ||
+      !isNameValid ||
+      !isCompanyValid ||
+      !isCountValid ||
+      !isSectorValid
+    ) {
+      return // Stop submission if validation fails
+    }
+
+    // Store sanitized appointment data
     updateFormData({
-      appointmentPhone: phone,
-      appointmentCompanyName: companyName,
-      appointmentEmployeeCount: employeeCount,
-      appointmentFullName: fullName,
-      appointmentEmail: email,
-      appointmentSector: sector,
+      appointmentPhone: sanitizeInput(phone),
+      appointmentCompanyName: sanitizeInput(companyName),
+      appointmentEmployeeCount: sanitizeInput(employeeCount),
+      appointmentFullName: sanitizeInput(fullName),
+      appointmentEmail: sanitizeInput(email),
+      appointmentSector: sanitizeInput(sector),
     })
 
     // Navigate to next step
@@ -190,93 +269,123 @@ export default function VeryLargePage() {
           {/* Form fields - 2 column grid */}
           <div className='mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:mt-12 lg:gap-[35px]'>
             {/* Phone */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <PhoneIcon />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <PhoneIcon />
+                </div>
+                <input
+                  type='tel'
+                  value={phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value, setPhone)}
+                  onBlur={() => handleBlur('phone', phone)}
+                  placeholder='Téléphone (ex: 01 23 45 67 89)'
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.phone ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='tel'
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder='Téléphone'
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.phone && <p className='mt-1 text-xs text-red-400'>{errors.phone}</p>}
             </div>
 
             {/* Company name */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <BuildingIcon />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <BuildingIcon />
+                </div>
+                <input
+                  type='text'
+                  value={companyName}
+                  onChange={(e) => handleInputChange('companyName', e.target.value, setCompanyName)}
+                  onBlur={() => handleBlur('companyName', companyName)}
+                  placeholder='Nom entreprise'
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.companyName ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='text'
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                placeholder='Nom entreprise'
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.companyName && (
+                <p className='mt-1 text-xs text-red-400'>{errors.companyName}</p>
+              )}
             </div>
 
             {/* Employee count */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <UsersIcon />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <UsersIcon />
+                </div>
+                <input
+                  type='text'
+                  value={employeeCount}
+                  onChange={(e) =>
+                    handleInputChange('employeeCount', e.target.value, setEmployeeCount)
+                  }
+                  onBlur={() => handleBlur('employeeCount', employeeCount)}
+                  placeholder='Nombre de collaborateurs'
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.employeeCount ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='text'
-                value={employeeCount}
-                onChange={(e) => setEmployeeCount(e.target.value)}
-                placeholder='Nombre de collaborateurs'
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.employeeCount && (
+                <p className='mt-1 text-xs text-red-400'>{errors.employeeCount}</p>
+              )}
             </div>
 
             {/* Full name */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <UserIcon className='w-5 h-5 text-white/40' />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <UserIcon className='w-5 h-5 text-white/40' />
+                </div>
+                <input
+                  type='text'
+                  value={fullName}
+                  onChange={(e) => handleInputChange('fullName', e.target.value, setFullName)}
+                  onBlur={() => handleBlur('fullName', fullName)}
+                  placeholder='Prénom Nom'
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.fullName ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='text'
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder='Prénom Nom'
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.fullName && <p className='mt-1 text-xs text-red-400'>{errors.fullName}</p>}
             </div>
 
             {/* Email */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <MailIcon />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <MailIcon />
+                </div>
+                <input
+                  type='email'
+                  value={email}
+                  onChange={(e) => handleInputChange('email', e.target.value, setEmail)}
+                  onBlur={() => handleBlur('email', email)}
+                  placeholder='Mail pro'
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.email ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder='Mail pro'
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.email && <p className='mt-1 text-xs text-red-400'>{errors.email}</p>}
             </div>
 
             {/* Sector */}
-            <div className='relative h-[60px] w-full'>
-              <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
-                <BriefcaseIcon />
+            <div className='relative w-full'>
+              <div className='relative h-[60px]'>
+                <div className='absolute left-[20px] top-[20px] flex h-[20px] w-[20px] flex-col items-start'>
+                  <BriefcaseIcon />
+                </div>
+                <input
+                  type='text'
+                  value={sector}
+                  onChange={(e) => handleInputChange('sector', e.target.value, setSector)}
+                  onBlur={() => handleBlur('sector', sector)}
+                  placeholder="Secteur d'activité"
+                  required
+                  className={`font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white/50 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12 ${errors.sector ? 'border border-red-500' : ''}`}
+                />
               </div>
-              <input
-                type='text'
-                value={sector}
-                onChange={(e) => setSector(e.target.value)}
-                placeholder="Secteur d'activité"
-                required
-                className="font-['Poppins',sans-serif] h-full w-full rounded-[10px] bg-white/8 pl-[52px] pr-4 text-base text-white placeholder:text-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)] outline-none transition-all focus:bg-white/12"
-              />
+              {errors.sector && <p className='mt-1 text-xs text-red-400'>{errors.sector}</p>}
             </div>
           </div>
 
