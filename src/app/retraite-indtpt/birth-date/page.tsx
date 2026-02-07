@@ -54,7 +54,7 @@ export default function BirthDatePage() {
       {/* Back button */}
       <button
         onClick={handleBack}
-        className='absolute top-10 left-[62px] flex items-center gap-2 text-white opacity-70 hover:opacity-100 transition-opacity'>
+        className='fixed left-4 top-8 z-10 flex items-center gap-2 text-white opacity-70 hover:opacity-100 transition-opacity sm:left-8 lg:left-[62px] lg:top-10'>
         <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>
           <path
             d='M12.5 15L7.5 10L12.5 5'
@@ -68,10 +68,10 @@ export default function BirthDatePage() {
       </button>
 
       {/* Main content */}
-      <div className='flex flex-col items-center justify-start pt-20 px-4'>
-        <div className='w-full max-w-[930px] flex flex-col items-center gap-8 px-[115px]'>
+      <div className='flex flex-col items-center justify-start pt-20 px-4 sm:px-8'>
+        <div className='w-full max-w-[930px] flex flex-col items-center gap-8'>
           {/* Header */}
-          <div className='flex flex-col items-center gap-8'>
+          <div className='flex flex-col items-center gap-6 sm:gap-8'>
             {/* Tag */}
             <div className='bg-white/10 px-[31px] py-[9px] rounded-full'>
               <p className='text-white text-[12.484px] font-bold leading-[17.834px] text-center'>
@@ -80,19 +80,19 @@ export default function BirthDatePage() {
             </div>
 
             {/* Title */}
-            <h1 className='text-[56px] font-extrabold text-center text-white leading-[80.254px] max-w-[888px]'>
+            <h1 className='text-3xl sm:text-4xl lg:text-[56px] font-extrabold text-center text-white leading-tight sm:leading-tight lg:leading-[80.254px] max-w-[888px]'>
               Quel <span className='text-[#67d29d]'>âge</span> avez-vous ?
             </h1>
 
             {/* Description */}
-            <p className='text-white/80 text-base text-center max-w-[615px] leading-[28.981px]'>
+            <p className='text-white/80 text-sm sm:text-base text-center max-w-[615px] leading-relaxed sm:leading-[28.981px]'>
               La cotisation est déterminée en fonction de l'âge atteint au 31 décembre de l'année
               précédente.
             </p>
           </div>
 
           {/* Form Card */}
-          <div className='w-[600px] bg-white/8 rounded-[10px] shadow-lg px-10 py-10 flex flex-col gap-6 mt-[60px]'>
+          <div className='w-full max-w-[600px] bg-white/8 rounded-[10px] shadow-lg px-6 sm:px-10 py-8 sm:py-10 flex flex-col gap-6 mt-8 sm:mt-[60px]'>
             {/* Icon */}
             <div className='w-[80px] h-[80px] rounded-full bg-gradient-to-b from-[#67d39d] to-[#55c1ff] flex items-center justify-center mx-auto'>
               <CalendarIcon className='w-10 h-10 text-white' />

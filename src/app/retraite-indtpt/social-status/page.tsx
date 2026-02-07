@@ -24,7 +24,7 @@ export default function SocialStatusPage() {
       {/* Back button */}
       <button
         onClick={handleBack}
-        className='absolute top-10 left-[62px] flex items-center gap-2 text-white opacity-70 hover:opacity-100 transition-opacity'>
+        className='fixed left-4 top-8 z-10 flex items-center gap-2 text-white opacity-70 hover:opacity-100 transition-opacity sm:left-8 lg:left-[62px] lg:top-10'>
         <svg width='20' height='20' viewBox='0 0 20 20' fill='none'>
           <path
             d='M12.5 15L7.5 10L12.5 5'
@@ -38,10 +38,10 @@ export default function SocialStatusPage() {
       </button>
 
       {/* Main content */}
-      <div className='flex flex-col items-center justify-start pt-[149px] px-4'>
-        <div className='w-full max-w-[920px] flex flex-col items-center gap-[62px]'>
+      <div className='flex flex-col items-center justify-start pt-20 px-4 sm:px-8 lg:pt-[149px]'>
+        <div className='w-full max-w-[920px] flex flex-col items-center gap-8 sm:gap-[62px]'>
           {/* Header */}
-          <div className='flex flex-col items-center gap-[22px] px-4'>
+          <div className='flex flex-col items-center gap-4 sm:gap-[22px] px-4'>
             {/* Tag */}
             <div className='bg-white/10 px-[31px] py-[9px] rounded-full'>
               <p className='text-white text-[12.484px] font-bold leading-[17.834px] text-center'>
@@ -50,23 +50,23 @@ export default function SocialStatusPage() {
             </div>
 
             {/* Title */}
-            <h1 className='text-[64px] font-extrabold text-center text-white leading-[80.254px]'>
+            <h1 className='text-3xl sm:text-4xl lg:text-[64px] font-extrabold text-center text-white leading-tight sm:leading-tight lg:leading-[80.254px]'>
               Voulez-vous couvrir vos <span className='text-[#67d29d]'>enfants</span> ?
             </h1>
           </div>
 
           {/* Description */}
-          <p className='text-white/80 text-base text-center max-w-[654px] leading-[28.981px]'>
+          <p className='text-white/80 text-sm sm:text-base text-center max-w-[654px] leading-relaxed sm:leading-[28.981px] px-4'>
             Vous pourrez ajouter vos enfants à tout moment, une fois votre contrat signé. Les
             enfants de plus de 25 ans doivent souscrire à leur propre contrat.
           </p>
 
           {/* Options */}
-          <div className='flex flex-col gap-[35px] p-3'>
+          <div className='flex flex-col gap-4 sm:gap-[35px] p-3 w-full'>
             {/* Oui, 1 enfant */}
             <button
               onClick={() => handleSelect('one')}
-              className='w-[653px] h-[136px] bg-white/8 rounded-xl px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 transition-colors group'>
+              className='w-full max-w-[653px] mx-auto h-[136px] bg-white/8 rounded-xl px-6 sm:px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 active:bg-white/12 transition-colors group'>
               <div className='flex items-center gap-5'>
                 <div className='w-12 h-12 rounded-full bg-white/10 flex items-center justify-center'>
                   <CheckIcon className='w-6 h-6 text-white' />
@@ -94,7 +94,7 @@ export default function SocialStatusPage() {
             {/* Oui, 2 enfants ou plus */}
             <button
               onClick={() => handleSelect('multiple')}
-              className='w-[653px] h-[136px] bg-white/8 rounded-xl px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 transition-colors group'>
+              className='w-full max-w-[653px] mx-auto h-[136px] bg-white/8 rounded-xl px-6 sm:px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 active:bg-white/12 transition-colors group'>
               <div className='flex items-center gap-5'>
                 <div className='w-12 h-12 rounded-full bg-white/10 flex items-center justify-center'>
                   <svg
@@ -138,7 +138,7 @@ export default function SocialStatusPage() {
             {/* Non, pas maintenant */}
             <button
               onClick={() => handleSelect('none')}
-              className='w-[653px] h-[136px] bg-white/8 rounded-xl px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 transition-colors group'>
+              className='w-full max-w-[653px] mx-auto h-[136px] bg-white/8 rounded-xl px-6 sm:px-[35px] py-[15px] flex items-center justify-between hover:bg-white/12 active:bg-white/12 transition-colors group'>
               <div className='flex items-center gap-5'>
                 <div className='w-12 h-12 rounded-full bg-white/10 flex items-center justify-center'>
                   <CloseIcon className='w-6 h-6 text-white' />
