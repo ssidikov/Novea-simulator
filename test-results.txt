@@ -1,0 +1,19 @@
+﻿
+≡ƒöÆ RLS Security Tests ΓÇö simulations table
+
+1. INSERT (anon)
+  Γ£à INSERT allowed (without returning data ΓÇö SELECT blocked as expected)
+2. SELECT (anon)
+  Γ£à SELECT returns empty (RLS silently filters all rows)
+3. UPDATE (anon)
+  Γ£à UPDATE affected 0 rows (RLS blocked)
+4. DELETE (anon)
+  Γ£à DELETE affected 0 rows (RLS blocked)
+5. UPSERT (anon)
+  Γ£à UPSERT + SELECT blocked ΓÇö new row violates row-level security policy for table "simulations"
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+  Results: 5 passed, 0 failed
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+≡ƒÄë All security tests passed. RLS is properly configured.

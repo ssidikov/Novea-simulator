@@ -168,9 +168,18 @@ export default function VeryLargePage() {
   }
 
   const handleInputChange = (field: string, value: string, setter: (v: string) => void) => {
-    const sanitized = sanitizeInput(value)
-    setter(sanitized)
+    // Don't trim during typing — allows spaces between words
+    setter(value)
     // Clear error on change
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }))
+    }
+  }
+
+  const handleNumericChange = (field: string, value: string, setter: (v: string) => void) => {
+    // Allow only digits
+    const digits = value.replace(/[^0-9]/g, '')
+    setter(digits)
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: '' }))
     }
@@ -330,8 +339,9 @@ export default function VeryLargePage() {
                 <input
                   type='text'
                   value={employeeCount}
+                  inputMode='numeric'
                   onChange={(e) =>
-                    handleInputChange('employeeCount', e.target.value, setEmployeeCount)
+                    handleNumericChange('employeeCount', e.target.value, setEmployeeCount)
                   }
                   onBlur={() => handleBlur('employeeCount', employeeCount)}
                   placeholder='Nombre de collaborateurs'
