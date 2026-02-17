@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useFormData } from '@/contexts/FormContext'
 import { getNextRoute } from '@/utils/navigationFlow'
+import { submitSimulation } from '@/lib/submitSimulation'
 import { CalendarIcon, UserIcon } from '@/components/Icons'
 
 function PhoneIcon() {
@@ -123,8 +124,9 @@ import {
 
 export default function VeryLargePage() {
   const router = useRouter()
-  const { updateFormData, formData } = useFormData()
+  const { updateFormData, formData, sessionId } = useFormData()
   const [phone, setPhone] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [companyName, setCompanyName] = useState('')
   const [employeeCount, setEmployeeCount] = useState('')
   const [fullName, setFullName] = useState('')
@@ -184,7 +186,7 @@ export default function VeryLargePage() {
     router.back()
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     // Validate all fields
@@ -207,17 +209,28 @@ export default function VeryLargePage() {
     }
 
     // Store sanitized appointment data
-    updateFormData({
+    const updatedData = {
       appointmentPhone: sanitizeInput(phone),
       appointmentCompanyName: sanitizeInput(companyName),
       appointmentEmployeeCount: sanitizeInput(employeeCount),
       appointmentFullName: sanitizeInput(fullName),
       appointmentEmail: sanitizeInput(email),
       appointmentSector: sanitizeInput(sector),
-    })
+    }
+    updateFormData(updatedData)
 
-    // Navigate to next step
-    const nextRoute = getNextRoute('/salary-employees/very-large', formData)
+    // Submit simulation data to backend
+    setIsSubmitting(true)
+    const mergedData = { ...formData, ...updatedData }
+    const result = await submitSimulation(sessionId, mergedData)
+    setIsSubmitting(false)
+
+    if (!result.success) {
+      console.error('[simulation] Submission error:', result.error)
+    }
+
+    // Navigate to next step regardless of submission outcome
+    const nextRoute = getNextRoute('/salary-employees/very-large', mergedData)
     router.push(nextRoute)
   }
 
@@ -392,7 +405,8 @@ export default function VeryLargePage() {
           {/* Submit button - hidden for now, will add later if needed */}
           <button
             type='submit'
-            className='mt-8 flex h-[60px] w-full max-w-[340px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#715aff] to-[#67d39d] font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl'>
+            disabled={isSubmitting}
+            className={`mt-8 flex h-[60px] w-full max-w-[340px] items-center justify-center gap-2 rounded-full font-semibold text-white shadow-lg transition-all ${isSubmitting ? 'bg-gray-500 cursor-not-allowed opacity-60' : 'bg-gradient-to-r from-[#715aff] to-[#67d39d] hover:scale-[1.02] hover:shadow-xl'}`}>
             Prendre rendez-vous
             <svg
               width='20'

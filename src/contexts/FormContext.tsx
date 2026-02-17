@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useMemo, ReactNode } from 'react'
 
 // Типы для всех возможных значений
 export type Situation =
@@ -147,6 +147,7 @@ const initialFormData: FormData = {
 // Интерфейс контекста
 interface FormContextType {
   formData: FormData
+  sessionId: string
   updateFormData: (data: Partial<FormData>) => void
   resetFormData: () => void
 }
@@ -157,6 +158,17 @@ const FormContext = createContext<FormContextType | undefined>(undefined)
 // Provider компонент
 export function FormProvider({ children }: { children: ReactNode }) {
   const [formData, setFormData] = useState<FormData>(initialFormData)
+  const [sessionId, setSessionId] = useState<string>('')
+
+  // Generate session ID on client mount
+  useMemo(() => {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      setSessionId(crypto.randomUUID())
+    } else {
+      setSessionId(Math.random().toString(36).slice(2) + Date.now().toString(36))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const updateFormData = (data: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...data }))
@@ -164,10 +176,16 @@ export function FormProvider({ children }: { children: ReactNode }) {
 
   const resetFormData = () => {
     setFormData(initialFormData)
+    // Generate a fresh session ID on reset
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      setSessionId(crypto.randomUUID())
+    } else {
+      setSessionId(Math.random().toString(36).slice(2) + Date.now().toString(36))
+    }
   }
 
   return (
-    <FormContext.Provider value={{ formData, updateFormData, resetFormData }}>
+    <FormContext.Provider value={{ formData, sessionId, updateFormData, resetFormData }}>
       {children}
     </FormContext.Provider>
   )
